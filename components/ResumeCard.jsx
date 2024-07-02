@@ -4,7 +4,9 @@ import { supabase } from '../lib/supabaseconfig'
 import Background from '../public/background.jpg'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 const ResumeCard = () => {
+  const Router = useRouter()
   const [Userdata, SetData] = useState([])
   const [loading, setloading] = useState(true)
   const getdata = async () => {
@@ -16,7 +18,7 @@ const ResumeCard = () => {
         alert('NO DATA SAVED')
       } else {
         SetData(data)
-        console.log(data)
+        // console.log(data)
         setloading(false)
       }
     } catch (err) {
@@ -38,12 +40,13 @@ const ResumeCard = () => {
         <div className=" grid grid-cols-2 lg:grid-cols-5 space-y-3 ">
           {Userdata.map((element) => {
             return (
-              <div key={element.ID}>
-                <Link href={'/'}>
-                  {' '}
-                  <Image alt="" src={Background} width={140} height={140} />
-                </Link>
-
+              <div
+                key={element.ID}
+                className=" cursor-pointer"
+                onClick={() => Router.push(`/ResumeDetails/${element.ID}`)}
+              >
+                {' '}
+                <Image alt="" src={Background} width={140} height={140} />
                 <h3 className=" capitalize block mt-4 text-lg font-bold text-gray-900 sm:text-xl">
                   {element.UserTitle}
                 </h3>
