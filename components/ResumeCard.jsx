@@ -26,7 +26,7 @@ const ResumeCard = () => {
 
   useEffect(() => {
     getdata()
-  }, [])
+  }, [Userdata])
 
   return (
     <div>
@@ -35,7 +35,7 @@ const ResumeCard = () => {
           <div class="loader"></div>
         </div>
       ) : (
-        <div className=" grid grid-cols-2 sm:grid-cols-3">
+        <div className=" grid grid-cols-2 lg:grid-cols-5 space-y-3 ">
           {Userdata.map((element) => {
             return (
               <div key={element.ID}>
