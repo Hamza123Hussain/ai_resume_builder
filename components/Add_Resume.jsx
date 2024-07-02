@@ -10,7 +10,7 @@ import {
 } from './dialog'
 import { supabase } from '../lib/supabaseconfig'
 import { useUser } from '@clerk/nextjs'
-
+import ResumeCard from './ResumeCard'
 const Add_Resume = () => {
   const [dialogopen, setdialog] = useState(false)
   const [loading, setloader] = useState(false)
@@ -94,12 +94,12 @@ const Add_Resume = () => {
       >
         Create A new Resume
       </button>
-      <div className=" flex flex-col gap-2">
-        <h1 className=" px-4 py-2 font-bold text-xl sm:text-2xl">
-          Previous Created Resumes
-        </h1>
-        <div className=" grid grid-cols-2 sm:grid-cols-3"></div>
-      </div>
+
+      <h1 className=" px-4 py-2 font-bold text-xl sm:text-2xl">
+        Previous Created Resumes
+      </h1>
+
+      <ResumeCard />
     </div>
   )
 }
