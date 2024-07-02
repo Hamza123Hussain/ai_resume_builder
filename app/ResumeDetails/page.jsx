@@ -1,4 +1,4 @@
-import Add_Resume_Details from '@/components/Add_Resume_Details'
+import Add_Resume_Details from '../../components/Add_Resume_Details'
 import React from 'react'
 
 const Page = () => {

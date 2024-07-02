@@ -1,4 +1,4 @@
-import Add_Resume from '@/components/Add_Resume'
+import Add_Resume from '../components/Add_Resume'
 import Image from 'next/image'
 
 export default function Home() {
