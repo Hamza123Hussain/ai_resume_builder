@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 const PersonalDetails = ({ ID }) => {
   const [PersonalDetails, setdetails] = useState({
@@ -39,6 +39,30 @@ const PersonalDetails = ({ ID }) => {
       console.error('Unexpected error:', err)
     }
   }
+  const getdata = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('UserData')
+        .select('*')
+        .eq('ID', ID)
+
+      if (error) {
+        console.error('Error fetching data:', error.message)
+        alert('NO DATA SAVED')
+      } else {
+        console.log(data)
+        if (data.length > 0) {
+          setdetails(data[0]) // Assuming data is an array and you want the first item
+        }
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+    }
+  }
+
+  useEffect(() => {
+    getdata()
+  }, [ID])
 
   return (
     <div className=" flex flex-col">

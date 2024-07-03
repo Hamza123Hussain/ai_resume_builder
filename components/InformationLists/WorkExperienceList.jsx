@@ -8,7 +8,10 @@ const WorkExperienceList = ({ ID }) => {
   const [WorkData, SetData] = useState([])
   const getdata = async () => {
     try {
-      const { data, error } = await supabase.from('WorkExperience').select('*')
+      const { data, error } = await supabase
+        .from('WorkExperience')
+        .select('*')
+        .eq('UserID', ID)
 
       if (error) {
         console.error('Error inserting data:', error.message)

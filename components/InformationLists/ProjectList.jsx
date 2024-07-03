@@ -8,7 +8,10 @@ const ProjectList = ({ ID }) => {
   const [ProjectData, SetData] = useState([])
   const getdata = async () => {
     try {
-      const { data, error } = await supabase.from('ProjectDetails').select('*')
+      const { data, error } = await supabase
+        .from('ProjectDetails')
+        .select('*')
+        .eq('UserID', ID)
 
       if (error) {
         console.error('Error inserting data:', error.message)

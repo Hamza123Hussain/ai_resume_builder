@@ -11,6 +11,7 @@ const EducationList = ({ ID }) => {
       const { data, error } = await supabase
         .from('EducationDetails')
         .select('*')
+        .eq('UserID', ID)
 
       if (error) {
         console.error('Error inserting data:', error.message)
@@ -45,34 +46,7 @@ const EducationList = ({ ID }) => {
     }
   }
   const router = useRouter()
-  //   Country
-  //   :
-  //   "Pakistan"
-  //   DegreeName
-  //   :
-  //   "CS"
-  //   Description
-  //   :
-  //   "GVTGV"
-  //   EndDate
-  //   :
-  //   "2024-07-11"
-  //   StartDate
-  //   :
-  //   "2024-02-03"
-  //   State
-  //   :
-  //   "punjab"
-  //   UserID
-  //   :
-  //   "0cb7e189-7179-4f01-b97a-14f4de507b6f"
 
-  //   id
-  //   :
-  //   2
-  //   institueName
-  //   :
-  ;('UOL')
   return (
     <div className=" flex flex-col gap-5 mt-5">
       {EducationData.map((element, index) => {

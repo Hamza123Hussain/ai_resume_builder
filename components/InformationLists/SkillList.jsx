@@ -8,7 +8,10 @@ const SkillList = ({ ID }) => {
   const [SkillData, SetData] = useState([])
   const getdata = async () => {
     try {
-      const { data, error } = await supabase.from('SkillDetails').select('*')
+      const { data, error } = await supabase
+        .from('SkillDetails')
+        .select('*')
+        .eq('UserID', ID)
 
       if (error) {
         console.error('Error inserting data:', error.message)
