@@ -3,6 +3,7 @@ import { Palette } from 'lucide-react'
 import React, { useState } from 'react'
 import PersonalDetails from '../../../components/ResumeDetails/PersonalDetails'
 import SummaryDetails from '../../../components/ResumeDetails/SummaryDetails'
+import WorkExperience from '../../../components/ResumeDetails/WorkExperience'
 const ResumeDetails = ({ params }) => {
   const [index, setindex] = useState(1)
 
@@ -31,6 +32,7 @@ const ResumeDetails = ({ params }) => {
         </div>
         {index == 1 ? <PersonalDetails ID={params.ID} /> : ''}
         {index == 2 ? <SummaryDetails ID={params.ID} /> : ''}
+        {index == 3 ? <WorkExperience ID={params.ID} /> : ''}
       </div>
     </div>
   )
