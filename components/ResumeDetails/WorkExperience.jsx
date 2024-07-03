@@ -1,9 +1,10 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import { supabase } from '../../lib/supabaseconfig'
 import { useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
 
 const WorkExperience = ({ ID }) => {
   const [WorkDetails, setWorkDetails] = useState({
@@ -15,11 +16,8 @@ const WorkExperience = ({ ID }) => {
     State: '',
     Description: '',
   })
-  //   const [WorkData, setWork] = useState([WorkDetails])
-  //   const Addmorexperience = () => {
-  //     setWork([...workerData, WorkDetails])
-  //   }
-  const { user } = useUser()
+  const Router = useRouter()
+
   const ChangeInput = (e) => {
     setWorkDetails((prev) => ({
       ...prev,
@@ -28,7 +26,7 @@ const WorkExperience = ({ ID }) => {
   }
   const CreateData = async () => {
     try {
-      const { data, error } = await supabase.from('WorkExperience').insert([
+      const { data, error } = await supabase.from('WorkExperience').update([
         {
           Jobtitle: WorkDetails.Jobtitle,
           Company: WorkDetails.Company,
@@ -37,7 +35,6 @@ const WorkExperience = ({ ID }) => {
           Country: WorkDetails.Country,
           State: WorkDetails.State,
           Description: WorkDetails.Description,
-          UserID: ID,
         },
       ])
 
@@ -47,13 +44,37 @@ const WorkExperience = ({ ID }) => {
       } else {
         console.log('Data inserted successfully:', data)
         alert('data in')
+        Router.back()
       }
     } catch (err) {
       console.error('Unexpected error:', err)
       alert('data out')
     }
   }
+  const getdata = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('WorkExperience')
+        .select('*')
+        .eq('id', ID) // Filter by the id
 
+      if (error) {
+        console.error('Error fetching data:', error.message)
+        alert('NO DATA SAVED')
+      } else {
+        console.log(data)
+        if (data.length > 0) {
+          setWorkDetails(data[0]) // Assuming data is an array and you want the first item
+        }
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+    }
+  }
+
+  useEffect(() => {
+    getdata()
+  }, [ID])
   return (
     <div className="flex flex-col">
       <div className="flex flex-col">
@@ -146,15 +167,6 @@ const WorkExperience = ({ ID }) => {
             placeholder="Enter Job Description"
             required
           />
-        </div>
-
-        <div className=" flex justify-between mt-5">
-          <button className=" text-black rounded-lg p-3 border-2 border-slate-400">
-            ADD More Work Experience
-          </button>
-          <button className=" text-black bg-red-600 px-5 py-2 rounded-lg">
-            Remove
-          </button>
         </div>
 
         <div onClick={() => CreateData()} className="flex justify-end mt-5">
