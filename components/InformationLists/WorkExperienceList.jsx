@@ -55,6 +55,15 @@ const WorkExperienceList = ({ ID }) => {
           </div>
         )
       })}
+
+      <button
+        onClick={() => {
+          router.push(`/CreateResumeData/${ID}/WorkExperience`)
+        }}
+        className=" text-black rounded-lg p-3 border-2 border-slate-400"
+      >
+        ADD More Work Experience
+      </button>
     </div>
   )
 }
