@@ -2,20 +2,34 @@
 import React from 'react'
 import { chatSessions } from '../../lib/GoogleGemniModel'
 import { useState } from 'react'
-
-const SummaryDetails = () => {
+import { supabase } from '../../lib/supabaseconfig'
+const SummaryDetails = ({ ID }) => {
   const [profile, setProfile] = useState('')
   const SendAnswerForFeedBack = async () => {
     const FeedBackPrompt = `Read the ${profile} completely and then give a 3-6 line breif profile that the user can add in their resume. Just give back the breif profile for the given text and nothing else `
 
     const Gemni_Response = await chatSessions.sendMessage(FeedBackPrompt)
 
-    console.log(Gemni_Response)
-
     const MockJsonResponse = Gemni_Response.response.text()
     setProfile(MockJsonResponse)
 
-    console.log(MockJsonResponse)
+    try {
+      const { data, error } = await supabase
+        .from('UserData')
+        .update({
+          Profile: profile,
+        })
+        .eq('ID', ID)
+
+      if (error) {
+        console.error('Error inserting data:', error.message)
+        alert('NO DATA SAVED')
+      } else {
+        console.log('Data inserted successfully:', data)
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+    }
   }
 
   return (
@@ -28,7 +42,7 @@ const SummaryDetails = () => {
           cols={10}
           rows={3}
           className=" border-2 border-slate-700 rounded-lg p-2"
-          placeholder="Provide a breif description about what you are and aspire to become"
+          placeholder="Provide Your Job Title, the projects you like to make and the skills you posses. Then AI will create a Profile for you"
         />
       </div>
       <div className=" flex justify-end">

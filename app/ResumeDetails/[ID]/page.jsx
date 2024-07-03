@@ -30,7 +30,7 @@ const ResumeDetails = ({ params }) => {
           </div>
         </div>
         {index == 1 ? <PersonalDetails ID={params.ID} /> : ''}
-        {index == 2 ? <SummaryDetails /> : ''}
+        {index == 2 ? <SummaryDetails ID={params.ID} /> : ''}
       </div>
     </div>
   )
