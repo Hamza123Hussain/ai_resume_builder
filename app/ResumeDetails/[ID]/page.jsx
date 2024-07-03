@@ -2,10 +2,8 @@
 import { Palette } from 'lucide-react'
 import React, { useState } from 'react'
 import PersonalDetails from '../../../components/ResumeDetails/PersonalDetails'
+import SummaryDetails from '../../../components/ResumeDetails/SummaryDetails'
 const ResumeDetails = ({ params }) => {
-  //   {
-  //     params.ID
-  //   }
   const [index, setindex] = useState(1)
 
   return (
@@ -18,16 +16,21 @@ const ResumeDetails = ({ params }) => {
           <div className=" py-1 flex gap-5">
             <button
               disabled={index <= 1}
+              onClick={() => setindex((prev) => prev - 1)}
               className=" px-4 rounded-lg text-black border-2 border-slate-900 disabled:opacity-35"
             >
               Previous
             </button>
-            <button className=" py-1 px-4 rounded-lg bg-blue-300 text-white">
+            <button
+              onClick={() => setindex((prev) => prev + 1)}
+              className=" py-1 px-4 rounded-lg bg-blue-300 text-white"
+            >
               Next
             </button>
           </div>
         </div>
-        <PersonalDetails ID={params.ID} />
+        {index == 1 ? <PersonalDetails ID={params.ID} /> : ''}
+        {index == 2 ? <SummaryDetails /> : ''}
       </div>
     </div>
   )
