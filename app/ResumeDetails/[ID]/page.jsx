@@ -8,6 +8,7 @@ import EducationDetails from '../../../components/ResumeDetails/EducationDetails
 import SkillDetails from '../../../components/ResumeDetails/SkillDetails'
 import ProjectDetails from '../../../components/ResumeDetails/ProjectDetails'
 import WorkExperienceList from '../../../components/InformationLists/WorkExperienceList'
+import EducationList from '../../../components/InformationLists/EducationList'
 const ResumeDetails = ({ params }) => {
   const [index, setindex] = useState(1)
 
@@ -38,7 +39,7 @@ const ResumeDetails = ({ params }) => {
         {index == 1 ? <PersonalDetails ID={params.ID} /> : ''}
         {index == 2 ? <SummaryDetails ID={params.ID} /> : ''}
         {index == 3 ? <WorkExperienceList ID={params.ID} /> : ''}
-        {index == 4 ? <EducationDetails ID={params.ID} /> : ''}
+        {index == 4 ? <EducationList ID={params.ID} /> : ''}
         {index == 5 ? <SkillDetails ID={params.ID} /> : ''}
         {index == 6 ? <ProjectDetails ID={params.ID} /> : ''}
       </div>

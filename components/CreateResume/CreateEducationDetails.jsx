@@ -24,21 +24,18 @@ const EducationDetails = ({ ID }) => {
   }
   const CreateData = async () => {
     try {
-      const { data, error } = await supabase
-        .from('EducationDetails')
-        .update([
-          {
-            DegreeName: EducationDetailss.DegreeName,
-            institueName: EducationDetailss.institueName,
-            StartDate: EducationDetailss.StartDate,
-            EndDate: EducationDetailss.EndDate,
-            Country: EducationDetailss.Country,
-            State: EducationDetailss.State,
-            Description: EducationDetailss.Description,
-            UserID: ID,
-          },
-        ])
-        .eq('id', ID) // Add the condition to specify which row to update
+      const { data, error } = await supabase.from('EducationDetails').insert([
+        {
+          DegreeName: EducationDetailss.DegreeName,
+          institueName: EducationDetailss.institueName,
+          StartDate: EducationDetailss.StartDate,
+          EndDate: EducationDetailss.EndDate,
+          Country: EducationDetailss.Country,
+          State: EducationDetailss.State,
+          Description: EducationDetailss.Description,
+          UserID: ID,
+        },
+      ])
 
       if (error) {
         console.error('Error inserting data:', error.message)
@@ -53,30 +50,7 @@ const EducationDetails = ({ ID }) => {
       alert('data out')
     }
   }
-  const getdata = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('EducationDetails')
-        .select('*')
-        .eq('id', ID) // Filter by the id
 
-      if (error) {
-        console.error('Error fetching data:', error.message)
-        alert('NO DATA SAVED')
-      } else {
-        console.log(data)
-        if (data.length > 0) {
-          setEducationDetailss(data[0]) // Assuming data is an array and you want the first item
-        }
-      }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-    }
-  }
-
-  useEffect(() => {
-    getdata()
-  }, [ID])
   return (
     <div className="flex flex-col">
       <div className="flex flex-col">
