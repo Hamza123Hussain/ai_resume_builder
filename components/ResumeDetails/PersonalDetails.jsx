@@ -5,7 +5,9 @@ const PersonalDetails = ({ ID }) => {
     FirstName: '',
     LastName: '',
     Jobtitle: '',
-    Address: '',
+    Country: '',
+    City: '',
+
     PhoneNumber: '',
     EmailAddress: '',
   })
@@ -23,7 +25,8 @@ const PersonalDetails = ({ ID }) => {
           FirstName: PersonalDetails.FirstName,
           LastName: PersonalDetails.LastName,
           Jobtitle: PersonalDetails.Jobtitle,
-          Address: PersonalDetails.Address,
+          City: PersonalDetails.City,
+          Country: PersonalDetails.Country,
           PhoneNumber: PersonalDetails.PhoneNumber,
           EmailAddress: PersonalDetails.EmailAddress,
         })
@@ -111,17 +114,31 @@ const PersonalDetails = ({ ID }) => {
           />
         </div>
 
-        <div className=" flex flex-col w-full mt-5">
-          <label className="px-2">Address</label>
-          <input
-            onChange={(e) => ChangeInput(e)}
-            value={PersonalDetails.Address}
-            name="Address"
-            className="p-2 border-2 border-slate-300 rounded-lg"
-            type="text"
-            placeholder="Enter Your Complete Address"
-            required
-          />
+        <div className=" flex flex-col sm:flex-row  gap-2 ">
+          <div className=" flex flex-col w-full">
+            <label className="px-2">Country Name</label>
+            <input
+              name="Country"
+              value={PersonalDetails.Country}
+              onChange={(e) => ChangeInput(e)}
+              className=" p-2 border-2 border-slate-300 rounded-lg"
+              type="text"
+              placeholder="Enter Your Country Name"
+              required
+            />
+          </div>
+          <div className=" flex flex-col w-full">
+            <label className="px-2">City Name</label>
+            <input
+              name="City"
+              value={PersonalDetails.City}
+              onChange={(e) => ChangeInput(e)}
+              className="  p-2 border-2 border-slate-300 rounded-lg"
+              type="text"
+              placeholder="Enter Your City Name"
+              required
+            />
+          </div>
         </div>
         <div className=" flex flex-col sm:flex-row  gap-2 mt-5 ">
           <div className=" flex flex-col w-full">
