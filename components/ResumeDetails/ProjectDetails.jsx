@@ -1,17 +1,69 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { supabase } from '../../lib/supabaseconfig'
+import { useRouter } from 'next/navigation'
 
-const ProjectDetails = () => {
+const ProjectDetails = ({ ID }) => {
   const [ProjectDetails, SetDetails] = useState({
     Name: '',
     Description: '',
   })
+  const Router = useRouter()
   const ChangeInput = (e) => {
     SetDetails((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }))
   }
+  const CreateData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('ProjectDetails')
+        .update({
+          Name: ProjectDetails.Name,
+          Description: ProjectDetails.Description,
+        })
+        .eq('id', ID) // Add the condition to specify which row to update
+
+      if (error) {
+        console.error('Error updating data:', error.message)
+        alert('NO DATA SAVED')
+      } else {
+        console.log('Data updated successfully:', data)
+        alert('Data updated successfully')
+        Router.back()
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      // alert('Unexpected error occurred')
+      Router.back()
+    }
+  }
+
+  const getdata = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('ProjectDetails')
+        .select('*')
+        .eq('id', ID) // Filter by the id
+
+      if (error) {
+        console.error('Error fetching data:', error.message)
+        alert('NO DATA SAVED')
+      } else {
+        console.log(data)
+        if (data.length > 0) {
+          SetDetails(data[0]) // Assuming data is an array and you want the first item
+        }
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+    }
+  }
+
+  useEffect(() => {
+    getdata()
+  }, [ID])
   return (
     <div className="flex flex-col">
       <div className="flex flex-col">

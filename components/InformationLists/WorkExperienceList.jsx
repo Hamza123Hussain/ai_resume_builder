@@ -62,7 +62,7 @@ const WorkExperienceList = ({ ID }) => {
               </div>
               <Trash2 onClick={() => DeleteData(element.id)} />
             </div>
-            <div className=" flex justify-between">
+            <div className=" flex md:flex-row flex-col justify-between">
               <div
                 className=" flex gap-2"
                 onClick={() => router.push(`/WorkExperience/${element.id}`)}

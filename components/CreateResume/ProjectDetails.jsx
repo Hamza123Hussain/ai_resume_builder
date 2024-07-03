@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { supabase } from '../../lib/supabaseconfig'
 import React, { useState } from 'react'
 
@@ -7,6 +8,8 @@ const ProjectDetails = ({ ID }) => {
     Name: '',
     Description: '',
   })
+
+  const Router = useRouter()
   const ChangeInput = (e) => {
     SetDetails((prev) => ({
       ...prev,

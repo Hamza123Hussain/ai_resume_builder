@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 const ProjectList = ({ ID }) => {
   const [ProjectData, SetData] = useState([])
-  const Router = useRouter()
   const getdata = async () => {
     try {
       const { data, error } = await supabase.from('ProjectDetails').select('*')
@@ -17,7 +16,6 @@ const ProjectList = ({ ID }) => {
       } else {
         SetData(data)
         console.log(data)
-        Router.back()
       }
     } catch (err) {
       console.error('Unexpected error:', err)
@@ -44,6 +42,7 @@ const ProjectList = ({ ID }) => {
       console.error('Unexpected error:', err)
     }
   }
+  const router = useRouter()
 
   return (
     <div className=" flex flex-col gap-5 mt-5">
@@ -54,10 +53,14 @@ const ProjectList = ({ ID }) => {
             key={index}
           >
             <div className=" flex justify-between">
-              <div className=" flex font-bold ">
-                <h1 className=" capitalize">{element.Name}</h1>,
-                <h1 className=" capitalize">{element.Description}</h1>
+              <div
+                className=" flex font-bold  gap-2 "
+                onClick={() => router.push(`/Project/${element.id}`)}
+              >
+                <h1 className=" capitalize">{element.Name} </h1> --
+                <h1 className=" capitalize"> {element.Description}</h1>
               </div>
+              <Trash2 onClick={() => DeleteData(element.id)} />
             </div>
           </div>
         )
@@ -65,11 +68,11 @@ const ProjectList = ({ ID }) => {
 
       <button
         onClick={() => {
-          Router.push(`/CreateResumeData/${ID}/Project`)
+          router.push(`/CreateResumeData/${ID}/Project`)
         }}
         className=" text-black rounded-lg p-3 border-2 border-slate-400"
       >
-        ADD More Project Details
+        ADD More Projects
       </button>
     </div>
   )
