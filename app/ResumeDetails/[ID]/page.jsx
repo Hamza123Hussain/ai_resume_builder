@@ -9,6 +9,10 @@ import SkillList from '../../../components/InformationLists/SkillList'
 import ProjectList from '../../../components/InformationLists/ProjectList'
 import PerosnalDetailsPreview from '../../../components/ResumePreview/PersonalDetailsPreview'
 import ProfileDetailsPreview from '../../../components/ResumePreview/ProfileDetailsPreview'
+import WorkExperiencePreview from '../../../components/ResumePreview/WorkExperiencePreview'
+import EducationPreview from '../../../components/ResumePreview/EducationPreview'
+import ProjectDetailsPreview from '../../../components/ResumePreview/ProjectDetailsPreview'
+import SkillsPreview from '../../../components/ResumePreview/SkillsPreview'
 const ResumeDetails = ({ params }) => {
   const [index, setindex] = useState(1)
 
@@ -44,9 +48,13 @@ const ResumeDetails = ({ params }) => {
         {index == 6 ? <ProjectList ID={params.ID} /> : ''}
       </div>
 
-      <div className=" flex flex-col p-2 bg-green-950 text-white mt-5 min-h-max w-11/12 shadow-gray-600 shadow-md rounded-md border-2 border-red-600">
+      <div className=" flex flex-col p-2 bg-green-950 text-white mt-5  mr-2  shadow-gray-600 shadow-md rounded-md border-2 border-red-600">
         <PerosnalDetailsPreview ID={params.ID} />
         <ProfileDetailsPreview ID={params.ID} />
+        <WorkExperiencePreview ID={params.ID} />
+        <EducationPreview ID={params.ID} />
+        <ProjectDetailsPreview ID={params.ID} />
+        <SkillsPreview ID={params.ID} />
       </div>
     </div>
   )
