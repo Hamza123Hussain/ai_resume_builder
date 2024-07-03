@@ -117,7 +117,7 @@ const EducationList = ({ ID }) => {
         }}
         className=" text-black rounded-lg p-3 border-2 border-slate-400"
       >
-        ADD More Education Experience
+        ADD More Education Details
       </button>
     </div>
   )
