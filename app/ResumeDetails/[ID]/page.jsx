@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import PersonalDetails from '../../../components/ResumeDetails/PersonalDetails'
 import SummaryDetails from '../../../components/ResumeDetails/SummaryDetails'
 import WorkExperience from '../../../components/ResumeDetails/WorkExperience'
+import EducationDetails from '../../../components/ResumeDetails/EducationDetails'
 const ResumeDetails = ({ params }) => {
   const [index, setindex] = useState(1)
 
@@ -33,6 +34,7 @@ const ResumeDetails = ({ params }) => {
         {index == 1 ? <PersonalDetails ID={params.ID} /> : ''}
         {index == 2 ? <SummaryDetails ID={params.ID} /> : ''}
         {index == 3 ? <WorkExperience ID={params.ID} /> : ''}
+        {index == 4 ? <EducationDetails ID={params.ID} /> : ''}
       </div>
     </div>
   )
