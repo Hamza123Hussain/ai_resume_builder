@@ -1,41 +1,25 @@
+// components/SkillDetailsForm.js
 'use client'
-import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
-import { supabase } from '../../lib/supabaseconfig'
+import { CreateData } from '../../functions/CreateSkillDetails'
+import { useRouter } from 'next/navigation'
 
 const SkillDetails = ({ ID }) => {
-  const [SkillDetails, SetDetails] = useState({ Name: '', Skill_Level: '' })
-  const Router = useRouter()
+  const [SkillDetails, setSkillDetails] = useState({
+    Name: '',
+    Skill_Level: '',
+  })
+  const router = useRouter()
 
   const ChangeInput = (e) => {
-    SetDetails((prev) => ({
+    setSkillDetails((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }))
   }
 
-  const CreateData = async () => {
-    try {
-      const { data, error } = await supabase.from('SkillDetails').insert([
-        {
-          Name: SkillDetails.Name,
-          Skill_Level: SkillDetails.Skill_Level,
-          UserID: ID,
-        },
-      ])
-
-      if (error) {
-        // console.error('Error inserting data:', error.message)
-        // alert('NO DATA SAVED')
-      } else {
-        console.log('Data inserted successfully:', data)
-        alert('Data inserted successfully')
-        Router.back()
-      }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      alert('Unexpected error occurred')
-    }
+  const onsave = () => {
+    CreateData(SkillDetails, router, ID)
   }
 
   return (
@@ -77,17 +61,10 @@ const SkillDetails = ({ ID }) => {
             </select>
           </div>
         </div>
-        <div className="flex justify-between mt-5">
-          <button className="text-black rounded-lg p-3 border-2 border-slate-400">
-            ADD More Education Details
-          </button>
-          <button className="text-black bg-red-600 px-5 py-2 rounded-lg">
-            Remove
-          </button>
-        </div>
+
         <div className="flex justify-end mt-5">
           <button
-            onClick={CreateData}
+            onClick={onsave}
             className="bg-green-600 text-white rounded-lg p-2"
           >
             Save

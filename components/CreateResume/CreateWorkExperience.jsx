@@ -1,9 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-
-import { supabase } from '../../lib/supabaseconfig'
-
+import { CreateData } from '../../functions/CreateWorkDetails'
 import { useRouter } from 'next/navigation'
 
 const CreateWorkExperience = ({ ID }) => {
@@ -23,34 +21,6 @@ const CreateWorkExperience = ({ ID }) => {
       ...prev,
       [e.target.name]: e.target.value,
     }))
-  }
-  const CreateData = async () => {
-    try {
-      const { data, error } = await supabase.from('WorkExperience').insert([
-        {
-          Jobtitle: WorkDetails.Jobtitle,
-          Company: WorkDetails.Company,
-          StartDate: WorkDetails.StartDate,
-          EndDate: WorkDetails.EndDate,
-          Country: WorkDetails.Country,
-          State: WorkDetails.State,
-          Description: WorkDetails.Description,
-          UserID: ID,
-        },
-      ])
-
-      if (error) {
-        // console.error('Error inserting data:', error.message)
-        // alert('NO DATA SAVED')
-      } else {
-        console.log('Data inserted successfully:', data)
-        alert('data in')
-        Router.back()
-      }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      alert('data out')
-    }
   }
 
   return (
@@ -147,7 +117,10 @@ const CreateWorkExperience = ({ ID }) => {
           />
         </div>
 
-        <div onClick={() => CreateData()} className="flex justify-end mt-5">
+        <div
+          onClick={() => CreateData(WorkDetails, Router, ID)}
+          className="flex justify-end mt-5"
+        >
           <button className="bg-green-600 text-white rounded-lg p-2">
             Save
           </button>
