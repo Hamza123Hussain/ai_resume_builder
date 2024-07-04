@@ -12,11 +12,11 @@ const Header = () => {
   return (
     <div
       id="no-print"
-      className=" px-3 py-4 shadow-md items-center flex justify-between  cursor-pointer"
+      className=" px-2 py-2 shadow-md items-center flex justify-between  cursor-pointer"
     >
-      <div className=" flex gap-2 items-center">
+      <div className=" flex ">
         <Image
-          className=" w-12 sm:w-20  "
+          className=" w-8 sm:w-20  "
           src={Logo}
           alt="Logo"
           onClick={() => router.push('/')}
@@ -27,17 +27,20 @@ const Header = () => {
           className="   flex justify-center items-center gap-4 font-bold cursor-pointer"
           onClick={() => router.push('/')}
         >
-          <p className=" text-xl  sm:text-4xl">IntelliResume</p>
+          <p className=" text-sm  sm:text-4xl">IntelliResume</p>
         </div>
       </div>
 
       {isSignedIn ? (
-        <div className=" flex  gap-4 items-center">
+        <div className=" flex   items-center">
           <p className=" hidden sm:inline">{user.fullName}</p>
           <UserButton />
         </div>
       ) : (
-        <Link className=" bg-green-300 rounded-lg p-4" href={'./sign-in'}>
+        <Link
+          className=" bg-green-300 rounded-lg px-2 py-1 sm:p-4"
+          href={'./sign-in'}
+        >
           {' '}
           Lets Get Started
         </Link>

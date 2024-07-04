@@ -25,7 +25,7 @@ const Theme = () => {
     <>
       <Dialog className="p-4">
         <DialogTrigger className=" flex gap-2 items-center">
-          <Palette /> <h1>Change Theme</h1>
+          <Palette /> <h1 className=" ">Change Theme</h1>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -49,7 +49,7 @@ const Theme = () => {
               </button>
             </DialogTitle>
             <DialogDescription>
-              <div className=" grid grid-cols-4 sm:grid-cols-5 gap-2 border-2 border-slate-200 p-2 rounded-lg">
+              <div className=" grid grid-cols-3 sm:grid-cols-5 gap-2 border-2 border-slate-200 p-2 rounded-lg">
                 {index == 0
                   ? textColors.map((color, index) => (
                       <div
