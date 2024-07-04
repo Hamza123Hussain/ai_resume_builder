@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import Header from '../components/Header.jsx'
-
+import { ThemeProvider } from '../lib/Context'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={inter.className}>
           <Header />
-          {children}
+          <ThemeProvider>{children}</ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

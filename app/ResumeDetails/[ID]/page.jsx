@@ -1,5 +1,5 @@
 'use client'
-import { Palette } from 'lucide-react'
+
 import React, { useState } from 'react'
 import PersonalDetails from '../../../components/ResumeDetails/PersonalDetails'
 import SummaryDetails from '../../../components/ResumeDetails/SummaryDetails'
@@ -13,6 +13,8 @@ import WorkExperiencePreview from '../../../components/ResumePreview/WorkExperie
 import EducationPreview from '../../../components/ResumePreview/EducationPreview'
 import ProjectDetailsPreview from '../../../components/ResumePreview/ProjectDetailsPreview'
 import SkillsPreview from '../../../components/ResumePreview/SkillsPreview'
+import Theme from '../../../components/Theme'
+import FinalPreview from '../../../components/ResumePreview/FinalPreview'
 const ResumeDetails = ({ params }) => {
   const [index, setindex] = useState(1)
 
@@ -21,7 +23,7 @@ const ResumeDetails = ({ params }) => {
       <div className=" flex flex-col mt-5 p-2">
         <div className=" flex justify-between items-center">
           <div className=" flex gap-2">
-            <Palette /> <h1>Change Theme</h1>
+            <Theme />
           </div>
           <div className=" py-1 flex gap-5">
             <button
@@ -48,14 +50,7 @@ const ResumeDetails = ({ params }) => {
         {index == 6 ? <ProjectList ID={params.ID} /> : ''}
       </div>
 
-      <div className=" flex flex-col p-2 bg-green-950 text-white mt-5 min-h-max mr-2  shadow-gray-600 shadow-md rounded-md border-2 border-red-600">
-        <PerosnalDetailsPreview ID={params.ID} />
-        <ProfileDetailsPreview ID={params.ID} />
-        <WorkExperiencePreview ID={params.ID} />
-        <EducationPreview ID={params.ID} />
-        <ProjectDetailsPreview ID={params.ID} />
-        <SkillsPreview ID={params.ID} />
-      </div>
+      <FinalPreview ID={params.ID} />
     </div>
   )
 }
