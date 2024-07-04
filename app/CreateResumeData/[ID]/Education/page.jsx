@@ -1,5 +1,5 @@
 import React from 'react'
-import EducationDetails from '../../../../components/CreateResume/CreateEducationDetails'
+import EducationDetails from '../../../../components/CreateResume/EducationDetails/CreateEducationDetails'
 
 const Page = ({ params }) => {
   return (
