@@ -10,7 +10,10 @@ const Header = () => {
   const router = useRouter()
   const { isSignedIn, user } = useUser()
   return (
-    <div className=" px-3 py-4 shadow-md items-center flex justify-between  cursor-pointer">
+    <div
+      id="no-print"
+      className=" px-3 py-4 shadow-md items-center flex justify-between  cursor-pointer"
+    >
       <div className=" flex gap-2 items-center">
         <Image
           className=" w-12 sm:w-20  "

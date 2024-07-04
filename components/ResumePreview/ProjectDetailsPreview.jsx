@@ -13,8 +13,8 @@ const ProjectDetailsPreview = ({ ID }) => {
         .eq('UserID', ID)
 
       if (error) {
-        console.error('Error inserting data:', error.message)
-        alert('NO DATA SAVED')
+        // console.error('Error inserting data:', error.message)
+        // alert('NO DATA SAVED')
       } else {
         SetData(data)
         console.log(data)

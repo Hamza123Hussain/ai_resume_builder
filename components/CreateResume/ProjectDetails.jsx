@@ -27,8 +27,8 @@ const ProjectDetails = ({ ID }) => {
       ])
 
       if (error) {
-        console.error('Error inserting data:', error.message)
-        alert('NO DATA SAVED')
+        // console.error('Error inserting data:', error.message)
+        // alert('NO DATA SAVED')
       } else {
         console.log('Data inserted successfully:', data)
         alert('data in')

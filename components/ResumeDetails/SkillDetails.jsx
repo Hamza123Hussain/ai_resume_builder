@@ -28,16 +28,16 @@ const SkillDetails = ({ ID }) => {
         .eq('id', ID)
 
       if (error) {
-        console.error('Error inserting data:', error.message)
-        alert('NO DATA SAVED')
+        // console.error('Error inserting data:', error.message)
+        // alert('NO DATA SAVED')
       } else {
         console.log('Data inserted successfully:', data)
         alert('Data inserted successfully')
         Router.back()
       }
     } catch (err) {
-      console.error('Unexpected error:', err)
-      alert('Unexpected error occurred')
+      // console.error('Unexpected error:', err)
+      // alert('Unexpected error occurred')
     }
   }
   const getdata = async () => {
@@ -48,8 +48,8 @@ const SkillDetails = ({ ID }) => {
         .eq('id', ID) // Filter by the id
 
       if (error) {
-        console.error('Error fetching data:', error.message)
-        alert('NO DATA SAVED')
+        // console.error('Error fetching data:', error.message)
+        // alert('NO DATA SAVED')
       } else {
         console.log(data)
         if (data.length > 0) {

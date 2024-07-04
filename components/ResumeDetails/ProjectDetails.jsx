@@ -26,8 +26,8 @@ const ProjectDetails = ({ ID }) => {
         .eq('id', ID) // Add the condition to specify which row to update
 
       if (error) {
-        console.error('Error updating data:', error.message)
-        alert('NO DATA SAVED')
+        // console.error('Error updating data:', error.message)
+        // alert('NO DATA SAVED')
       } else {
         console.log('Data updated successfully:', data)
         alert('Data updated successfully')
@@ -48,8 +48,8 @@ const ProjectDetails = ({ ID }) => {
         .eq('id', ID) // Filter by the id
 
       if (error) {
-        console.error('Error fetching data:', error.message)
-        alert('NO DATA SAVED')
+        // console.error('Error fetching data:', error.message)
+        // alert('NO DATA SAVED')
       } else {
         console.log(data)
         if (data.length > 0) {

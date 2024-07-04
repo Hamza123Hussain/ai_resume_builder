@@ -178,3 +178,24 @@
     background-position: 0% 100%, 100% 100%, 200% 100%;
   }
 }
+
+@media print {
+  #no-print {
+    display: none;
+  }
+  #kill {
+    display: none;
+  }
+  #printme {
+    display: block;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+@page {
+  size: auto;
+  margin: 0mm;
+}

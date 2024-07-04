@@ -48,7 +48,7 @@ const ResumeDetails = ({ params }) => {
         {index == 6 ? <ProjectList ID={params.ID} /> : ''}
       </div>
 
-      <div className=" flex flex-col p-2 bg-green-950 text-white mt-5  mr-2  shadow-gray-600 shadow-md rounded-md border-2 border-red-600">
+      <div className=" flex flex-col p-2 bg-green-950 text-white mt-5 min-h-max mr-2  shadow-gray-600 shadow-md rounded-md border-2 border-red-600">
         <PerosnalDetailsPreview ID={params.ID} />
         <ProfileDetailsPreview ID={params.ID} />
         <WorkExperiencePreview ID={params.ID} />
