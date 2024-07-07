@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 
-const ProjectDetailsPreview = ({ ID }) => {
+const ProjectDetailsPreview = ({ ID, theme }) => {
   const [ProjectData, SetData] = useState([])
   const getdata = async () => {
     try {
@@ -21,7 +21,7 @@ const ProjectDetailsPreview = ({ ID }) => {
   }, [])
 
   return (
-    <div className="py-2 px-4 border-b-2 border-slate-200">
+    <div className={`py-2 px-4 border-b-2 ${theme.Border}`}>
       <h1 className=" font-bold text-xl">Projects</h1>
       {ProjectData.map((element, index) => {
         return (

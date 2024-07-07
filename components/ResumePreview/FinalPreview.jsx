@@ -10,14 +10,12 @@ import { ThemeContext } from '../../lib/Context'
 const FinalPreview = ({ ID }) => {
   const { theme, setTheme } = useContext(ThemeContext)
   return (
-    <div
-      className={`flex flex-col p-2   ${theme.Text} ${theme.Border}    shadow-gray-600   border-2 `}
-    >
-      <PerosnalDetailsPreview ID={ID} />
-      <ProfileDetailsPreview ID={ID} />
-      <WorkExperiencePreview ID={ID} />
-      <EducationPreview ID={ID} />
-      <ProjectDetailsPreview ID={ID} />
+    <div className={`flex flex-col p-2   ${theme.Text}   shadow-gray-600   `}>
+      <PerosnalDetailsPreview theme={theme} ID={ID} />
+      <ProfileDetailsPreview theme={theme} ID={ID} />
+      <WorkExperiencePreview theme={theme} ID={ID} />
+      <EducationPreview ID={ID} theme={theme} />
+      <ProjectDetailsPreview theme={theme} ID={ID} />
       <SkillsPreview ID={ID} />
     </div>
   )

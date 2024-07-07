@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 import { AtSign, MapPin, Phone } from 'lucide-react'
 
-const PerosnalDetailsPreview = ({ ID }) => {
+const PerosnalDetailsPreview = ({ ID, theme }) => {
   const [PerosnalDetailsPreview, setDetails] = useState({
     FirstName: '',
     LastName: '',
@@ -53,7 +53,9 @@ const PerosnalDetailsPreview = ({ ID }) => {
           {PerosnalDetailsPreview.City}, {PerosnalDetailsPreview.Country}
         </h1>
       </div>
-      <div className="text-xs flex flex-col sm:flex-row justify-between items-center p-2 border-b-2 border-red-600">
+      <div
+        className={`text-xs flex flex-col sm:flex-row justify-between items-center p-2 border-b-2 ${theme.Border} `}
+      >
         <h1 className="flex gap-1 items-center">
           <AtSign size={12} /> {PerosnalDetailsPreview.EmailAddress}
         </h1>

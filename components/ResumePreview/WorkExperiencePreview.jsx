@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 
-const WorkExperiencePreview = ({ ID }) => {
+const WorkExperiencePreview = ({ ID, theme }) => {
   const [WorkData, SetData] = useState([])
   const getdata = async () => {
     try {
@@ -21,7 +21,7 @@ const WorkExperiencePreview = ({ ID }) => {
   }, [])
 
   return (
-    <div className="py-2 px-4 border-b-2 border-r-slate-200">
+    <div className={`py-2 px-4 border-b-2 ${theme.Border}`}>
       <h1 className=" text-xl font-bold">Work Experience</h1>
 
       {WorkData.map((element, index) => {
