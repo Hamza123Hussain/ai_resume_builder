@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <Header />
           <ThemeProvider>{children}</ThemeProvider>
-          <Toaster />
+          {/* <Toaster /> */}
         </body>
       </html>
     </ClerkProvider>

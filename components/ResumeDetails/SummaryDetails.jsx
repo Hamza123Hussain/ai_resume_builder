@@ -46,7 +46,6 @@ const SummaryDetails = ({ ID }) => {
         .from('Profile')
         .update({
           Description: profile,
-          UserID: ID,
         })
         .eq('UserID', ID)
       setloading(false)

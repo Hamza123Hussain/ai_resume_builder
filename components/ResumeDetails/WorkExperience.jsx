@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 import { useUser } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 const WorkExperience = ({ ID }) => {
   const [WorkDetails, setWorkDetails] = useState({

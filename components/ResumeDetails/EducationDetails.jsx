@@ -36,7 +36,6 @@ const EducationDetails = ({ ID }) => {
             Country: EducationDetailss.Country,
             State: EducationDetailss.State,
             Description: EducationDetailss.Description,
-            UserID: ID,
           },
         ])
         .eq('id', ID) // Add the condition to specify which row to update

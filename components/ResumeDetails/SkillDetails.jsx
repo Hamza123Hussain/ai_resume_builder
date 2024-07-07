@@ -23,7 +23,6 @@ const SkillDetails = ({ ID }) => {
           {
             Name: SkillDetails.Name,
             Skill_Level: SkillDetails.Skill_Level,
-            UserID: ID,
           },
         ])
         .eq('id', ID)
