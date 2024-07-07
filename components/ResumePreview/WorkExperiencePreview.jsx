@@ -27,11 +27,11 @@ const WorkExperiencePreview = ({ ID, theme }) => {
       {WorkData.map((element, index) => {
         return (
           <div
-            className="py-3  bg-transparent rounded-lg flex flex-col cursor-pointer gap-2 "
+            className="py-3  bg-transparent rounded-lg flex flex-col cursor-pointer gap-2 p-2 "
             key={index}
           >
             <div className=" text-xs flex justify-between items-center w-full">
-              <div className=" flex font-bold items-center  ">
+              <div className=" flex font-extrabold items-center  ">
                 <h1 className=" capitalize">{element.Jobtitle}</h1>,
                 <h1 className=" capitalize">{element.Company}</h1>
               </div>
@@ -46,7 +46,7 @@ const WorkExperiencePreview = ({ ID, theme }) => {
               <h1 className=" capitalize opacity-75">{element.EndDate}</h1>
             </div>
 
-            <div className="text-xs break-words whitespace-normal mt-2">
+            <div className="text-sm  break-words whitespace-normal ">
               {element.Description}
             </div>
           </div>

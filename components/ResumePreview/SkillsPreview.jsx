@@ -27,10 +27,10 @@ const SkillsPreview = ({ ID }) => {
       {SkillData.map((element, index) => {
         return (
           <div
-            className="py-3  rounded-lg flex justify-between cursor-pointer "
+            className="py-3  rounded-lg flex justify-between cursor-pointer p-2  "
             key={index}
           >
-            <h1 className=" capitalize">{element.Name} </h1>
+            <h1 className=" capitalize font-extrabold">{element.Name} </h1>
             <h1 className=" capitalize">
               {' '}
               Skill Level : {element.Skill_Level}

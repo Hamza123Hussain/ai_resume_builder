@@ -54,13 +54,16 @@ const SkillList = ({ ID }) => {
           className="p-3 bg-slate-200 rounded-lg flex flex-col cursor-pointer"
           key={index}
         >
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div
-              className="flex font-bold gap-2"
+              className="flex font-bold  flex-col"
               onClick={() => router.push(`/Skills/${element.id}`)}
             >
-              <h1 className="capitalize">{element.Name}</h1> --
-              <h1 className="capitalize">{element.Skill_Level}</h1>
+              <h1 className="capitalize">{element.Name}</h1>
+              <div className=" p-2 text-sm">
+                <h3 className=" text-gray-500">Skill Level</h3>
+                <h1 className="capitalize">{element.Skill_Level}</h1>
+              </div>
             </div>
             <Trash2 onClick={() => DeleteData(element.id)} />
           </div>

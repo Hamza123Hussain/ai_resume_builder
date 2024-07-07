@@ -34,7 +34,7 @@ const ProfileDetailsPreview = ({ ID, theme }) => {
   return (
     <div className={`flex flex-col mt-2 p-4 gap-2 border-b-2 ${theme.Border}`}>
       <h1 className=" font-bold text-lg">Profile</h1>
-      <h1>{profile}</h1>
+      <h1 className=" text-sm p-2">{profile}</h1>
     </div>
   )
 }

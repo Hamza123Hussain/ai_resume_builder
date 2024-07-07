@@ -4,46 +4,44 @@ import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import Loader from '../Loader'
 import toast from 'react-hot-toast'
+
 const ProjectList = ({ ID }) => {
-  const [ProjectData, SetData] = useState([])
-  const [loading, setloading] = useState(true)
+  const [ProjectData, setProjectData] = useState([])
+  const [loading, setLoading] = useState(true)
   const router = useRouter()
-  const getdata = async () => {
+
+  const getData = async () => {
     try {
       const response = await fetch(`/api/Lists/Project?id=${ID}`)
       const data = await response.json()
-      SetData(data)
-      console.log(data)
-      setloading(false)
+      setProjectData(data)
+      setLoading(false)
     } catch (err) {
       console.error('Unexpected error:', err)
-      setloading(false)
+      setLoading(false)
     }
   }
 
   useEffect(() => {
-    getdata()
+    getData()
   }, [])
-  if (loading) {
-    return (
-      <>
-        <Loader />
-      </>
-    )
-  }
 
-  const DeleteData = async (itemid) => {
+  const deleteData = async (itemId) => {
     try {
-      const response = await fetch(`/api/Lists/Project?itemid=${itemid}`, {
+      const response = await fetch(`/api/Lists/Project?itemid=${itemId}`, {
         method: 'DELETE',
       })
       const data = await response.json()
       console.log('Data deleted successfully:', data)
       toast.success('Data has been deleted')
-      getdata()
+      getData()
     } catch (err) {
       console.error('Unexpected error:', err)
     }
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (
@@ -53,15 +51,21 @@ const ProjectList = ({ ID }) => {
           className="p-3 bg-slate-200 rounded-lg flex flex-col cursor-pointer"
           key={index}
         >
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div
-              className="flex font-bold gap-2"
+              className="flex flex-col"
               onClick={() => router.push(`/Project/${element.id}`)}
             >
-              <h1 className="capitalize">{element.Name}</h1> --
-              <h1 className="capitalize">{element.Description}</h1>
+              <h1 className="capitalize">{element.Name}</h1>
+              <div className="px-2">
+                <h3 className="text-sm text-gray-500">Description</h3>
+                <p className="capitalize text-sm">
+                  {element.Description.split(' ').slice(0, 20).join(' ')}{' '}
+                  {element.Description.split(' ').length > 20 ? '...' : ''}
+                </p>
+              </div>
             </div>
-            <Trash2 onClick={() => DeleteData(element.id)} />
+            <Trash2 onClick={() => deleteData(element.id)} />
           </div>
         </div>
       ))}
@@ -72,7 +76,7 @@ const ProjectList = ({ ID }) => {
         }}
         className="text-black rounded-lg p-3 border-2 border-slate-400"
       >
-        ADD More Projects
+        Add More Projects
       </button>
     </div>
   )

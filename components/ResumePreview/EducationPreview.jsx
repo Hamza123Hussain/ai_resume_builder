@@ -26,11 +26,11 @@ const EducationPreview = ({ ID, theme }) => {
       {EducationData.map((element, index) => {
         return (
           <div
-            className="py-3  rounded-lg flex flex-col cursor-pointer gap-1 "
+            className="py-3  rounded-lg flex flex-col cursor-pointer gap-1  p-2 "
             key={index}
           >
-            <div className=" text-xs flex justify-between">
-              <div className=" flex font-bold ">
+            <div className=" text-xs flex justify-between ">
+              <div className=" flex font-extrabold ">
                 <h1 className=" capitalize">{element.DegreeName}</h1>,
                 <h1 className=" capitalize">{element.institueName}</h1>
               </div>
@@ -44,7 +44,7 @@ const EducationPreview = ({ ID, theme }) => {
               <h1 className=" capitalize opacity-75">{element.StartDate}</h1>-
               <h1 className=" capitalize opacity-75">{element.EndDate}</h1>
             </div>
-            <div className="text-xs break-words whitespace-normal mt-2">
+            <div className="text-sm  break-words whitespace-normal">
               {element.Description}
             </div>
           </div>

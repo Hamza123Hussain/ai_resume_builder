@@ -26,11 +26,14 @@ const ProjectDetailsPreview = ({ ID, theme }) => {
       {ProjectData.map((element, index) => {
         return (
           <div
-            className=" py-2  rounded-lg flex flex-col cursor-pointer gap-1 "
+            className=" py-2 p-2  rounded-lg flex flex-col cursor-pointer gap-1 "
             key={index}
           >
-            <h1 className=" capitalize">{element.Name} </h1>
-            <h1 className=" capitalize"> {element.Description}</h1>
+            <h1 className=" font-extrabold capitalize">{element.Name} </h1>
+            <h1 className=" capitalize text-sm  break-words whitespace-normal">
+              {' '}
+              {element.Description}
+            </h1>
           </div>
         )
       })}
