@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import Loader from '../Loader'
+import toast from 'react-hot-toast'
 
 const WorkExperienceList = ({ ID }) => {
   const [WorkData, SetData] = useState([])
@@ -14,6 +15,7 @@ const WorkExperienceList = ({ ID }) => {
       const data = await response.json()
       SetData(data)
       setloading(false)
+      toast.success('Data has been deleted')
       console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)

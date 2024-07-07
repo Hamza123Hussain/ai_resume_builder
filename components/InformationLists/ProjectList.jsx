@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import Loader from '../Loader'
+import toast from 'react-hot-toast'
 const ProjectList = ({ ID }) => {
   const [ProjectData, SetData] = useState([])
   const [loading, setloading] = useState(true)
@@ -38,6 +39,7 @@ const ProjectList = ({ ID }) => {
       })
       const data = await response.json()
       console.log('Data deleted successfully:', data)
+      toast.success('Data has been deleted')
       getdata()
     } catch (err) {
       console.error('Unexpected error:', err)

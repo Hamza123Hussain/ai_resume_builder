@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import Loader from '../Loader'
+import toast from 'react-hot-toast'
 
 const SkillList = ({ ID }) => {
   const [SkillData, SetData] = useState([])
@@ -39,6 +40,7 @@ const SkillList = ({ ID }) => {
       })
       const data = await response.json()
       console.log('Data deleted successfully:', data)
+      toast.success('Data has been deleted')
       getdata()
     } catch (err) {
       console.error('Unexpected error:', err)

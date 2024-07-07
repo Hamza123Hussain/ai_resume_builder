@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import Loader from '../Loader'
+import toast from 'react-hot-toast'
 const EducationList = ({ ID }) => {
   const [EducationData, SetData] = useState([])
   const [loading, setloading] = useState(true)
@@ -30,6 +31,7 @@ const EducationList = ({ ID }) => {
       })
       const data = await response.json()
       console.log('Data deleted successfully:', data)
+      toast.success('Data has been deleted')
       getdata()
     } catch (err) {
       console.error('Unexpected error:', err)

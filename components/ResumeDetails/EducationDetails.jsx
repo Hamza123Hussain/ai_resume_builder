@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { supabase } from '../../lib/supabaseconfig'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 const EducationDetails = ({ ID }) => {
   const [EducationDetailss, setEducationDetailss] = useState({
@@ -46,6 +47,7 @@ const EducationDetails = ({ ID }) => {
       } else {
         console.log('Data inserted successfully:', data)
         alert('data in')
+        toast.success('Data has been Updated')
         router.back()
       }
     } catch (err) {

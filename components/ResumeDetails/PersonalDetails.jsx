@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 import Loader from '../Loader'
+import toast from 'react-hot-toast'
 const PersonalDetails = ({ ID }) => {
   const [PersonalDetails, setdetails] = useState({
     FirstName: '',
@@ -40,6 +41,7 @@ const PersonalDetails = ({ ID }) => {
         // alert('NO DATA SAVED')
       } else {
         console.log('Data inserted successfully:', data)
+        toast.success('Data has been Updated')
       }
     } catch (err) {
       console.error('Unexpected error:', err)

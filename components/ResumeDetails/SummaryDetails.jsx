@@ -4,6 +4,7 @@ import { chatSessions } from '../../lib/GoogleGemniModel'
 import { useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 import Loader from '../Loader'
+import toast from 'react-hot-toast'
 const SummaryDetails = ({ ID }) => {
   const [profile, setProfile] = useState('')
   const [loading, setloading] = useState(true)
@@ -55,6 +56,7 @@ const SummaryDetails = ({ ID }) => {
         setloading(false)
       } else {
         console.log('Data inserted successfully:', data)
+        toast.success('Data has been Updated')
       }
     } catch (err) {
       console.error('Unexpected error:', err)

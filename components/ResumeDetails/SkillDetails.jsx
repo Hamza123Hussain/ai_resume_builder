@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
+import toast from 'react-hot-toast'
 
 const SkillDetails = ({ ID }) => {
   const [SkillDetails, SetDetails] = useState({ Name: '', Skill_Level: '' })
@@ -32,7 +33,7 @@ const SkillDetails = ({ ID }) => {
         // alert('NO DATA SAVED')
       } else {
         console.log('Data inserted successfully:', data)
-        alert('Data inserted successfully')
+        toast.success('Data has been Updated')
         Router.back()
       }
     } catch (err) {

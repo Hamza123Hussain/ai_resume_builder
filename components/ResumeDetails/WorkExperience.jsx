@@ -44,7 +44,7 @@ const WorkExperience = ({ ID }) => {
         // alert('NO DATA SAVED')
       } else {
         console.log('Data updated successfully:', data)
-        alert('Data updated successfully')
+        toast.success('Data has been Updated')
         Router.back()
       }
     } catch (err) {

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 const ProjectDetails = ({ ID }) => {
   const [ProjectDetails, SetDetails] = useState({
@@ -30,7 +31,7 @@ const ProjectDetails = ({ ID }) => {
         // alert('NO DATA SAVED')
       } else {
         console.log('Data updated successfully:', data)
-        alert('Data updated successfully')
+        toast.success('Data has been Updated')
         Router.back()
       }
     } catch (err) {
