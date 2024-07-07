@@ -3,16 +3,20 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
+import Loader from '../Loader'
 const EducationList = ({ ID }) => {
   const [EducationData, SetData] = useState([])
+  const [loading, setloading] = useState(true)
   const getdata = async () => {
     try {
       const response = await fetch(`/api/Lists/Education?id=${ID}`)
       const data = await response.json()
       SetData(data)
+      setloading(false)
       console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
+      setloading(false)
     }
   }
 
@@ -33,6 +37,14 @@ const EducationList = ({ ID }) => {
   }
 
   const router = useRouter()
+
+  if (loading) {
+    return (
+      <>
+        <Loader />
+      </>
+    )
+  }
 
   return (
     <div className=" flex flex-col gap-5 mt-5">

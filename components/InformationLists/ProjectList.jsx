@@ -2,24 +2,34 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
-
+import Loader from '../Loader'
 const ProjectList = ({ ID }) => {
   const [ProjectData, SetData] = useState([])
-
+  const [loading, setloading] = useState(true)
+  const router = useRouter()
   const getdata = async () => {
     try {
       const response = await fetch(`/api/Lists/Project?id=${ID}`)
       const data = await response.json()
       SetData(data)
       console.log(data)
+      setloading(false)
     } catch (err) {
       console.error('Unexpected error:', err)
+      setloading(false)
     }
   }
 
   useEffect(() => {
     getdata()
   }, [])
+  if (loading) {
+    return (
+      <>
+        <Loader />
+      </>
+    )
+  }
 
   const DeleteData = async (itemid) => {
     try {
@@ -33,8 +43,6 @@ const ProjectList = ({ ID }) => {
       console.error('Unexpected error:', err)
     }
   }
-
-  const router = useRouter()
 
   return (
     <div className="flex flex-col gap-5 mt-5">

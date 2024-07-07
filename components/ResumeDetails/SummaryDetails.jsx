@@ -3,8 +3,11 @@ import React, { useEffect } from 'react'
 import { chatSessions } from '../../lib/GoogleGemniModel'
 import { useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
+import Loader from '../Loader'
 const SummaryDetails = ({ ID }) => {
   const [profile, setProfile] = useState('')
+  const [loading, setloading] = useState(true)
+
   const CreateDetails = async () => {
     const FeedBackPrompt = `Read the ${profile} completely and then give a 3-6 line breif profile that the user can add in their resume. Just give back the breif profile for the given text and nothing else `
 
@@ -45,10 +48,11 @@ const SummaryDetails = ({ ID }) => {
           UserID: ID,
         })
         .eq('UserID', ID)
-
+      setloading(false)
       if (error) {
         // console.error('Error inserting data:', error.message)
         // alert('NO DATA SAVED')
+        setloading(false)
       } else {
         console.log('Data inserted successfully:', data)
       }
@@ -62,10 +66,12 @@ const SummaryDetails = ({ ID }) => {
         .from('Profile')
         .select('*')
         .eq('UserID', ID)
+      setloading(false)
 
       if (error) {
         // console.error('Error fetching data:', error.message)
         // alert('NO DATA SAVED')
+        setloading(false)
       } else {
         console.log(data)
         if (data.length > 0) {
@@ -80,6 +86,14 @@ const SummaryDetails = ({ ID }) => {
   useEffect(() => {
     getdata()
   }, [ID])
+
+  if (loading) {
+    return (
+      <>
+        <Loader />
+      </>
+    )
+  }
 
   return (
     <div className=" flex flex-col">

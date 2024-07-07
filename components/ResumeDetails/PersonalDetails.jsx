@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
+import Loader from '../Loader'
 const PersonalDetails = ({ ID }) => {
   const [PersonalDetails, setdetails] = useState({
     FirstName: '',
@@ -11,6 +12,7 @@ const PersonalDetails = ({ ID }) => {
     PhoneNumber: '',
     EmailAddress: '',
   })
+  const [loading, setloading] = useState(true)
   const ChangeInput = (e) => {
     setdetails((prev) => ({
       ...prev,
@@ -31,8 +33,9 @@ const PersonalDetails = ({ ID }) => {
           EmailAddress: PersonalDetails.EmailAddress,
         })
         .eq('ID', ID)
-
+      setloading(false)
       if (error) {
+        setloading(false)
         // console.error('Error inserting data:', error.message)
         // alert('NO DATA SAVED')
       } else {
@@ -48,8 +51,9 @@ const PersonalDetails = ({ ID }) => {
         .from('UserData')
         .select('*')
         .eq('ID', ID)
-
+      setloading(false)
       if (error) {
+        setloading(false)
         // console.error('Error fetching data:', error.message)
         // alert('NO DATA SAVED')
       } else {
@@ -66,6 +70,14 @@ const PersonalDetails = ({ ID }) => {
   useEffect(() => {
     getdata()
   }, [ID])
+
+  if (loading) {
+    return (
+      <>
+        <Loader />
+      </>
+    )
+  }
 
   return (
     <div className=" flex flex-col">
