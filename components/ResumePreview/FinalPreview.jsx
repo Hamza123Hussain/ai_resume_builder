@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import PerosnalDetailsPreview from './PersonalDetailsPreview'
 import ProfileDetailsPreview from './ProfileDetailsPreview'
@@ -9,6 +10,12 @@ import SkillsPreview from './SkillsPreview'
 import { ThemeContext } from '../../lib/Context'
 const FinalPreview = ({ ID }) => {
   const { theme, setTheme } = useContext(ThemeContext)
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) {
+      setTheme(JSON.parse(savedTheme))
+    }
+  }, [])
   return (
     <div className={`flex flex-col p-2   ${theme.Text}   shadow-gray-600   `}>
       <PerosnalDetailsPreview theme={theme} ID={ID} />

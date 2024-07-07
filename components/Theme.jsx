@@ -1,5 +1,5 @@
 import { Palette } from 'lucide-react'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -42,11 +42,20 @@ const Theme = () => {
 
   const HandleText = (color) => {
     setTheme((prev) => ({ ...prev, Text: color }))
+    localStorage.setItem('theme', JSON.stringify({ ...theme, Text: color }))
   }
+
   const HandleBorder = (color) => {
     setTheme((prev) => ({ ...prev, Border: color }))
+    localStorage.setItem('theme', JSON.stringify({ ...theme, Border: color }))
   }
-  //   console.log(theme)
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) {
+      setTheme(JSON.parse(savedTheme))
+    }
+  }, [])
 
   return (
     <>
@@ -76,6 +85,15 @@ const Theme = () => {
               </button>
             </DialogTitle>
             <DialogDescription>
+              {index == 0 ? (
+                <h1 className={` p-2 ${theme.Text}`}>Current Text Color</h1>
+              ) : (
+                <h1
+                  className={` rounded-lg w-fit mb-2 p-2 border-2 ${theme.Border}`}
+                >
+                  Current Border Color
+                </h1>
+              )}
               <div className=" grid grid-cols-3 sm:grid-cols-5 gap-2 border-2 border-slate-200 p-2 rounded-lg">
                 {index == 0
                   ? textColors.map((textcolor, index) => (
