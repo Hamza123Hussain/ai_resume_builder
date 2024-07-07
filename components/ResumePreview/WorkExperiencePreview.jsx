@@ -10,7 +10,7 @@ const WorkExperiencePreview = ({ ID, theme }) => {
       const response = await fetch(`/api/Lists/WorkExperience?id=${ID}`)
       const data = await response.json()
       SetData(data)
-      console.log(data)
+      // console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }
@@ -18,9 +18,9 @@ const WorkExperiencePreview = ({ ID, theme }) => {
 
   useEffect(() => {
     getdata()
-  }, [])
+  }, [WorkData])
 
-  return (
+  return WorkData.length > 0 ? (
     <div className={`py-2 px-4 border-b-2 ${theme.Border}`}>
       <h1 className=" text-xl font-bold">Work Experience</h1>
 
@@ -53,6 +53,8 @@ const WorkExperiencePreview = ({ ID, theme }) => {
         )
       })}
     </div>
+  ) : (
+    ''
   )
 }
 

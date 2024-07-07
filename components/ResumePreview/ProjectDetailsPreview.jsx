@@ -19,7 +19,7 @@ const ProjectDetailsPreview = ({ ID, theme }) => {
     getdata()
   }, [ProjectData])
 
-  return (
+  return ProjectData.length > 0 ? (
     <div className={`py-2 px-4 border-b-2 ${theme.Border}`}>
       <h1 className=" font-bold text-xl">Projects</h1>
       {ProjectData.map((element, index) => {
@@ -37,6 +37,8 @@ const ProjectDetailsPreview = ({ ID, theme }) => {
         )
       })}
     </div>
+  ) : (
+    <></>
   )
 }
 

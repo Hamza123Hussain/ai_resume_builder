@@ -10,7 +10,7 @@ const EducationPreview = ({ ID, theme }) => {
       const response = await fetch(`/api/Lists/Education?id=${ID}`)
       const data = await response.json()
       SetData(data)
-      console.log(data)
+      // console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }
@@ -18,9 +18,9 @@ const EducationPreview = ({ ID, theme }) => {
 
   useEffect(() => {
     getdata()
-  }, [])
+  }, [EducationData])
 
-  return (
+  return EducationData.length > 0 ? (
     <div className={`py-2 px-4 border-b-2 ${theme.Border}`}>
       <h1 className=" font-extrabold text-xl">Education Details</h1>
       {EducationData.map((element, index) => {
@@ -30,7 +30,7 @@ const EducationPreview = ({ ID, theme }) => {
             key={index}
           >
             <div className=" text-xs flex justify-between ">
-              <div className=" flex font-extrabold ">
+              <div className=" flex font-bold ">
                 <h1 className=" capitalize">{element.DegreeName}</h1>,
                 <h1 className=" capitalize">{element.institueName}</h1>
               </div>
@@ -51,6 +51,8 @@ const EducationPreview = ({ ID, theme }) => {
         )
       })}
     </div>
+  ) : (
+    <></>
   )
 }
 

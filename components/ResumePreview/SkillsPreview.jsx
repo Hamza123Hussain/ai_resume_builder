@@ -11,7 +11,7 @@ const SkillsPreview = ({ ID }) => {
       const response = await fetch(`/api/Lists/Skill?id=${ID}`)
       const data = await response.json()
       SetData(data)
-      console.log(data)
+      // console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }
@@ -19,9 +19,9 @@ const SkillsPreview = ({ ID }) => {
 
   useEffect(() => {
     getdata()
-  }, [])
+  }, [SkillData])
 
-  return (
+  return SkillData.length > 0 ? (
     <div className=" p-4 ">
       <h1 className=" font-bold text-xl">Skills</h1>
       {SkillData.map((element, index) => {
@@ -39,6 +39,8 @@ const SkillsPreview = ({ ID }) => {
         )
       })}
     </div>
+  ) : (
+    <></>
   )
 }
 

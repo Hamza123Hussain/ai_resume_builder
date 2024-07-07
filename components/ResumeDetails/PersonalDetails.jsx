@@ -184,7 +184,7 @@ const PersonalDetails = ({ ID }) => {
         <div className=" flex justify-end mt-5">
           <button
             onClick={() => UpdateData()}
-            className=" bg-green-300 text-white rounded-lg p-2"
+            className=" bg-green-500 text-white rounded-lg p-2"
           >
             Save
           </button>
