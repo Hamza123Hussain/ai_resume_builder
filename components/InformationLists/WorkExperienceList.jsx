@@ -79,7 +79,7 @@ const WorkExperienceList = ({ ID }) => {
               className="flex gap-2 opacity-85"
               onClick={() => router.push(`/WorkExperience/${element.id}`)}
             >
-              <h1 className="capitalize">{element.State}</h1>,
+              <h1 className="capitalize">{element.City}</h1>,
               <h1 className="capitalize">{element.Country}</h1>
             </div>
           </div>

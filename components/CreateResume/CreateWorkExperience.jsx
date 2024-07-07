@@ -1,6 +1,6 @@
 'use client'
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { useCity } from 'react'
 
 import { useRouter } from 'next/navigation'
 import { CreateWork } from '../../functions/CreateWorkExperience'
@@ -12,7 +12,7 @@ const CreateWorkExperience = ({ ID }) => {
     StartDate: '',
     EndDate: '',
     Country: '',
-    State: '',
+    City: '',
     Description: '',
   })
   const Router = useRouter()
@@ -94,14 +94,14 @@ const CreateWorkExperience = ({ ID }) => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label className="px-2">State</label>
+            <label className="px-2">City</label>
             <input
-              name="State"
-              value={WorkDetails.State}
+              name="City"
+              value={WorkDetails.City}
               onChange={ChangeInput}
               className="p-2 border-2 border-slate-300 rounded-lg"
               type="text"
-              placeholder="Enter State"
+              placeholder="Enter City"
               required
             />
           </div>

@@ -36,7 +36,7 @@ const WorkExperiencePreview = ({ ID, theme }) => {
                 <h1 className=" capitalize">{element.Company}</h1>
               </div>
               <div className="flex gap-2 opacity-85 items-center">
-                <h1 className=" capitalize">{element.State}</h1>,
+                <h1 className=" capitalize">{element.City}</h1>,
                 <h1 className=" capitalize">{element.Country}</h1>
               </div>{' '}
             </div>

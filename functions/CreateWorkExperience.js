@@ -8,7 +8,7 @@ export const CreateWork = async (WorkDetails, router, ID) => {
       StartDate: WorkDetails.StartDate,
       EndDate: WorkDetails.EndDate,
       Country: WorkDetails.Country,
-      State: WorkDetails.State,
+      City: WorkDetails.City,
       Description: WorkDetails.Description,
       UserID: ID,
     })

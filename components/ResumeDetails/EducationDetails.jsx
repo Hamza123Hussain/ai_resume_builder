@@ -1,6 +1,6 @@
 'use client'
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useCity } from 'react'
 
 import { supabase } from '../../lib/supabaseconfig'
 import { useRouter } from 'next/navigation'
@@ -13,7 +13,7 @@ const EducationDetails = ({ ID }) => {
     StartDate: '',
     EndDate: '',
     Country: '',
-    State: '',
+    City: '',
     Description: '',
   })
   const router = useRouter()
@@ -34,7 +34,7 @@ const EducationDetails = ({ ID }) => {
             StartDate: EducationDetailss.StartDate,
             EndDate: EducationDetailss.EndDate,
             Country: EducationDetailss.Country,
-            State: EducationDetailss.State,
+            City: EducationDetailss.City,
             Description: EducationDetailss.Description,
           },
         ])
@@ -148,14 +148,14 @@ const EducationDetails = ({ ID }) => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label className="px-2">State</label>
+            <label className="px-2">City</label>
             <input
-              name="State"
-              value={EducationDetailss.State}
+              name="City"
+              value={EducationDetailss.City}
               onChange={ChangeInput}
               className="p-2 border-2 border-slate-300 rounded-lg"
               type="text"
-              placeholder="Enter State"
+              placeholder="Enter City"
               required
             />
           </div>

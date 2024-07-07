@@ -12,7 +12,7 @@ export const POST = async (req) => {
         StartDate: payload.StartDate,
         EndDate: payload.EndDate,
         Country: payload.Country,
-        State: payload.State,
+        City: payload.City,
         Description: payload.Description,
         UserID: payload.UserID,
       },

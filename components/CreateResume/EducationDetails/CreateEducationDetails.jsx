@@ -12,7 +12,7 @@ const EducationDetails = ({ ID }) => {
     StartDate: '',
     EndDate: '',
     Country: '',
-    State: '',
+    City: '',
     Description: '',
   })
   const router = useRouter()

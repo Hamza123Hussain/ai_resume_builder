@@ -9,7 +9,7 @@ export const CreateData = async (EducationDetailss, router, ID) => {
         StartDate: EducationDetailss.StartDate,
         EndDate: EducationDetailss.EndDate,
         Country: EducationDetailss.Country,
-        State: EducationDetailss.State,
+        City: EducationDetailss.City,
         Description: EducationDetailss.Description,
         UserID: ID,
       }

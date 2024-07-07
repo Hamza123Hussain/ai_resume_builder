@@ -46,11 +46,11 @@ const EducationDetailsForm = ({ EducationDetailss, ChangeInput, onSave }) => (
         placeholder="Enter Country"
       />
       <InputField
-        label="State"
-        name="State"
-        value={EducationDetailss.State}
+        label="City"
+        name="City"
+        value={EducationDetailss.City}
         onChange={ChangeInput}
-        placeholder="Enter State"
+        placeholder="Enter City"
       />
     </div>
     <TextAreaField

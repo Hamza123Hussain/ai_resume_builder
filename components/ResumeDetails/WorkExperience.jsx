@@ -1,6 +1,6 @@
 'use client'
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useCity } from 'react'
 
 import { supabase } from '../../lib/supabaseconfig'
 import { useUser } from '@clerk/nextjs'
@@ -14,7 +14,7 @@ const WorkExperience = ({ ID }) => {
     StartDate: '',
     EndDate: '',
     Country: '',
-    State: '',
+    City: '',
     Description: '',
   })
   const Router = useRouter()
@@ -35,7 +35,7 @@ const WorkExperience = ({ ID }) => {
           StartDate: WorkDetails.StartDate,
           EndDate: WorkDetails.EndDate,
           Country: WorkDetails.Country,
-          State: WorkDetails.State,
+          City: WorkDetails.City,
           Description: WorkDetails.Description,
         })
         .eq('id', ID) // Add the condition to specify which row to update
@@ -148,14 +148,14 @@ const WorkExperience = ({ ID }) => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label className="px-2">State</label>
+            <label className="px-2">City</label>
             <input
-              name="State"
-              value={WorkDetails.State}
+              name="City"
+              value={WorkDetails.City}
               onChange={ChangeInput}
               className="p-2 border-2 border-slate-300 rounded-lg"
               type="text"
-              placeholder="Enter State"
+              placeholder="Enter City"
               required
             />
           </div>
