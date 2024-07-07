@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-export const CreateData = async (WorkDetails, ID, Router) => {
+export const CreateWork = async (WorkDetails, router, ID) => {
   try {
-    const response = await axios.post('/api/CreateWork', {
+    const response = await axios.post('/api/CreateResume/CreateWork', {
       Jobtitle: WorkDetails.Jobtitle,
       Company: WorkDetails.Company,
       StartDate: WorkDetails.StartDate,
@@ -15,14 +15,14 @@ export const CreateData = async (WorkDetails, ID, Router) => {
 
     if (response.status === 201) {
       console.log('Data inserted successfully:', response.data)
-      alert('Data inserted successfully')
-      Router.back()
+      alert('data in')
+      router.push(`/ResumeDetails/${ID}`)
     } else {
       console.error('Error inserting data:', response.data.message)
       alert('NO DATA SAVED')
     }
   } catch (err) {
     console.error('Unexpected error:', err)
-    alert('Unexpected error occurred')
+    alert('data out')
   }
 }

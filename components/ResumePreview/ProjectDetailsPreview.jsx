@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { supabase } from '../../lib/supabaseconfig'
 
 const ProjectDetailsPreview = ({ ID, theme }) => {
   const [ProjectData, SetData] = useState([])
@@ -10,7 +9,7 @@ const ProjectDetailsPreview = ({ ID, theme }) => {
       const response = await fetch(`/api/Lists/Project?id=${ID}`)
       const data = await response.json()
       SetData(data)
-      console.log(data)
+      // console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }

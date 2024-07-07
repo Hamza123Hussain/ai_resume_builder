@@ -1,8 +1,9 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react'
-import { CreateData } from '../../functions/CreateWorkDetails'
+
 import { useRouter } from 'next/navigation'
+import { CreateWork } from '../../functions/CreateWorkExperience'
 
 const CreateWorkExperience = ({ ID }) => {
   const [WorkDetails, setWorkDetails] = useState({
@@ -117,11 +118,11 @@ const CreateWorkExperience = ({ ID }) => {
           />
         </div>
 
-        <div
-          onClick={() => CreateData(WorkDetails, Router, ID)}
-          className="flex justify-end mt-5"
-        >
-          <button className="bg-green-600 text-white rounded-lg p-2">
+        <div className="flex justify-end mt-5">
+          <button
+            onClick={() => CreateWork(WorkDetails, Router, ID)}
+            className="bg-green-600 text-white rounded-lg p-2"
+          >
             Save
           </button>
         </div>

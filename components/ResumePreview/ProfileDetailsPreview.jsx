@@ -17,7 +17,7 @@ const ProfileDetailsPreview = ({ ID, theme }) => {
         // console.error('Error fetching data:', error.message)
         // alert('NO DATA SAVED')
       } else {
-        console.log(data)
+        // console.log(data)
         if (data.length > 0) {
           setProfile(data[0].Description) // Assuming data is an array and you want the first item
         }

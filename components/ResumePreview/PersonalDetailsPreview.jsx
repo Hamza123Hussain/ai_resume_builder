@@ -25,7 +25,7 @@ const PerosnalDetailsPreview = ({ ID, theme }) => {
         console.error('Error fetching data:', error.message)
         // alert('NO DATA SAVED')
       } else {
-        console.log(data)
+        // console.log(data)
         if (data.length > 0) {
           setDetails(data[0]) // Assuming data is an array and you want the first item
         }
