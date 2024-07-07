@@ -7,28 +7,21 @@ const WorkExperiencePreview = ({ ID }) => {
   const [WorkData, SetData] = useState([])
   const getdata = async () => {
     try {
-      const { data, error } = await supabase
-        .from('WorkExperience')
-        .select('*')
-        .eq('UserID', ID)
-
-      if (error) {
-        // console.error('Error inserting data:', error.message)
-        // alert('NO DATA SAVED')
-      } else {
-        SetData(data)
-        console.log(data)
-      }
+      const response = await fetch(`/api/Lists/WorkExperience?id=${ID}`)
+      const data = await response.json()
+      SetData(data)
+      console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }
   }
+
   useEffect(() => {
     getdata()
-  }, [WorkData])
+  }, [])
 
   return (
-    <div className="py-2 px-4">
+    <div className="py-2 px-4 border-b-2 border-r-slate-200">
       <h1 className=" text-xl font-bold">Work Experience</h1>
 
       {WorkData.map((element, index) => {

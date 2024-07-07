@@ -1,50 +1,37 @@
 'use client'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { supabase } from '../../lib/supabaseconfig'
 import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 const EducationList = ({ ID }) => {
   const [EducationData, SetData] = useState([])
   const getdata = async () => {
     try {
-      const { data, error } = await supabase
-        .from('EducationDetails')
-        .select('*')
-        .eq('UserID', ID)
-
-      if (error) {
-        // console.error('Error inserting data:', error.message)
-        // alert('NO DATA SAVED')
-      } else {
-        SetData(data)
-        console.log(data)
-      }
+      const response = await fetch(`/api/Lists/Education?id=${ID}`)
+      const data = await response.json()
+      SetData(data)
+      console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }
   }
+
   useEffect(() => {
     getdata()
   }, [])
   const DeleteData = async (itemid) => {
     try {
-      const { data, error } = await supabase
-        .from('EducationDetails')
-        .delete()
-        .eq('id', itemid)
-
-      if (error) {
-        // console.error('Error inserting data:', error.message)
-        // alert('NO DATA SAVED')
-      } else {
-        console.log('Data inserted successfully:', data)
-        getdata()
-      }
+      const response = await fetch(`/api/Lists/Education?itemid=${itemid}`, {
+        method: 'DELETE',
+      })
+      const data = await response.json()
+      console.log('Data deleted successfully:', data)
+      getdata()
     } catch (err) {
       console.error('Unexpected error:', err)
     }
   }
+
   const router = useRouter()
 
   return (

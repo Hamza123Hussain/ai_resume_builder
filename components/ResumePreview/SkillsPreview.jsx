@@ -5,30 +5,24 @@ import { supabase } from '../../lib/supabaseconfig'
 
 const SkillsPreview = ({ ID }) => {
   const [SkillData, SetData] = useState([])
+
   const getdata = async () => {
     try {
-      const { data, error } = await supabase
-        .from('SkillDetails')
-        .select('*')
-        .eq('UserID', ID)
-
-      if (error) {
-        // console.error('Error inserting data:', error.message)
-        // alert('NO DATA SAVED')
-      } else {
-        SetData(data)
-        console.log(data)
-      }
+      const response = await fetch(`/api/Lists/Skill?id=${ID}`)
+      const data = await response.json()
+      SetData(data)
+      console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }
   }
+
   useEffect(() => {
     getdata()
-  }, [SkillData])
+  }, [])
 
   return (
-    <div className=" p-4">
+    <div className=" p-4 ">
       <h1 className=" font-bold text-xl">Skills</h1>
       {SkillData.map((element, index) => {
         return (

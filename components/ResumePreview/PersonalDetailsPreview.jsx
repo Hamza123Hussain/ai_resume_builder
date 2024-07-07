@@ -40,7 +40,7 @@ const PerosnalDetailsPreview = ({ ID }) => {
   }, [PerosnalDetailsPreview])
 
   return (
-    <div className="flex flex-col gap-2 p-4">
+    <div className="flex flex-col gap-2 p-4  ">
       <div className="flex flex-col justify-center items-center gap-1">
         <h1 className="text-xl font-bold text-center">
           {PerosnalDetailsPreview.FirstName} {PerosnalDetailsPreview.LastName}

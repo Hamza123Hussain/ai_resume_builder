@@ -7,28 +7,21 @@ const ProjectDetailsPreview = ({ ID }) => {
   const [ProjectData, SetData] = useState([])
   const getdata = async () => {
     try {
-      const { data, error } = await supabase
-        .from('ProjectDetails')
-        .select('*')
-        .eq('UserID', ID)
-
-      if (error) {
-        // console.error('Error inserting data:', error.message)
-        // alert('NO DATA SAVED')
-      } else {
-        SetData(data)
-        console.log(data)
-      }
+      const response = await fetch(`/api/Lists/Project?id=${ID}`)
+      const data = await response.json()
+      SetData(data)
+      console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }
   }
+
   useEffect(() => {
     getdata()
-  }, [ProjectData])
+  }, [])
 
   return (
-    <div className="py-2 px-4">
+    <div className="py-2 px-4 border-b-2 border-slate-200">
       <h1 className=" font-bold text-xl">Projects</h1>
       {ProjectData.map((element, index) => {
         return (

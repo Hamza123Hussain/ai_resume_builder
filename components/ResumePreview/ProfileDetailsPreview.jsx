@@ -32,7 +32,7 @@ const ProfileDetailsPreview = ({ ID }) => {
   }, [profile])
 
   return (
-    <div className=" flex flex-col mt-2 p-4 gap-2">
+    <div className=" flex flex-col mt-2 p-4 gap-2 border-b-2 border-slate-200">
       <h1 className=" font-bold text-lg">Profile</h1>
       <h1>{profile}</h1>
     </div>
