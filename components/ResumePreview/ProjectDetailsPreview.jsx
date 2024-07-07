@@ -18,7 +18,7 @@ const ProjectDetailsPreview = ({ ID, theme }) => {
 
   useEffect(() => {
     getdata()
-  }, [])
+  }, [ProjectData])
 
   return (
     <div className={`py-2 px-4 border-b-2 ${theme.Border}`}>

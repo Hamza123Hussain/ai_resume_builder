@@ -1,10 +1,18 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
+
 export default function Home() {
+  const Router = useRouter()
   return (
-    <main className="p-6 sm:p-10 md:p-16 lg:p-24 bg-gray-50">
+    <main className="p-6 sm:p-10 md:p-16 lg:p-24 bg-gray-100">
       <section className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
+        <button
+          onClick={() => Router.push('/DashBoard')}
+          className="text-4xl font-bold text-gray-500 mb-4 border-2 hover:bg-green-500 hover:text-white border-green-500  rounded-lg p-5"
+        >
           Build Your Perfect Resume
-        </h1>
+        </button>
         <p className="text-lg text-gray-600">
           Create a professional resume effortlessly with the help of AI.
         </p>
@@ -69,21 +77,4 @@ export default function Home() {
       </section>
     </main>
   )
-}
-{
-  /* <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
-{/* <img
-  src="/images/export-options.png"
-  alt="Export Options"
-  className="h-32 w-32 mb-4"
-/> */
-}
-{
-  /* <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-  Export Options
-</h2>
-<p className="text-gray-600">
-  Export your resume in various formats including PDF and Word.
-</p>
-</div> */
 }
