@@ -9,7 +9,7 @@ export default function Home() {
       <section className="text-center mb-10">
         <button
           onClick={() => Router.push('/DashBoard')}
-          className="text-4xl font-bold text-gray-500 mb-4 border-2 hover:bg-green-500 hover:text-white border-green-500  rounded-lg p-5"
+          className=" text-lg sm:text-4xl font-bold text-gray-500 mb-4 border-2 hover:bg-green-500 hover:text-white border-green-500  rounded-lg p-5"
         >
           Build Your Perfect Resume
         </button>
