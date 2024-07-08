@@ -1,5 +1,6 @@
 // functions/CreateProjectDetails.js
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 export const CreateData = async (ProjectDetails, router, ID) => {
   try {
@@ -14,7 +15,7 @@ export const CreateData = async (ProjectDetails, router, ID) => {
 
     if (response.status === 201) {
       console.log('Data inserted successfully:', response.data)
-      alert('Data inserted successfully')
+      toast.success('Project DETAILS SAVED')
       router.back()
     } else {
       console.error('Error inserting data:', response.data.message)

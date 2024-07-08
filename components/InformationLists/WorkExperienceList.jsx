@@ -15,7 +15,7 @@ const WorkExperienceList = ({ ID }) => {
       const data = await response.json()
       SetData(data)
       setloading(false)
-      toast.success('Data has been deleted')
+
       console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
@@ -43,7 +43,7 @@ const WorkExperienceList = ({ ID }) => {
         }
       )
       const data = await response.json()
-      console.log('Data deleted successfully:', data)
+      toast.success('Data deleted successfully')
       getdata()
     } catch (err) {
       console.error('Unexpected error:', err)

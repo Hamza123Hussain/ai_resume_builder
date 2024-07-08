@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import { CreateData } from '../../../functions/CreatingEducationDetails'
 import { useRouter } from 'next/navigation'
 import EducationDetailsForm from './EducationDetailsForm'
-
+import toast from 'react-hot-toast'
+import { AIgenerate } from '../../../functions/AiGenerate'
 const EducationDetails = ({ ID }) => {
   const [EducationDetailss, setEducationDetailss] = useState({
     DegreeName: '',
@@ -16,11 +17,19 @@ const EducationDetails = ({ ID }) => {
     Description: '',
   })
   const router = useRouter()
+  const [loading, setloading] = useState(false)
   const ChangeInput = (e) => {
     setEducationDetailss((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }))
+  }
+  const CallAi = async () => {
+    setloading(true)
+    const data = await AIgenerate(EducationDetailss.Description)
+    setEducationDetailss((prev) => ({ ...prev, Description: data }))
+    toast.success('Description Generated From AI')
+    setloading(false)
   }
 
   const onSave = () => {
@@ -36,6 +45,8 @@ const EducationDetails = ({ ID }) => {
         EducationDetailss={EducationDetailss}
         ChangeInput={ChangeInput}
         onSave={onSave}
+        CallAi={CallAi}
+        loading={loading}
       />
     </div>
   )

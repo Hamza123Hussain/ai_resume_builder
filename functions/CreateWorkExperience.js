@@ -1,4 +1,5 @@
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 export const CreateWork = async (WorkDetails, router, ID) => {
   try {
@@ -15,7 +16,7 @@ export const CreateWork = async (WorkDetails, router, ID) => {
 
     if (response.status === 201) {
       console.log('Data inserted successfully:', response.data)
-      alert('data in')
+      toast.success('WORK DETAILS SAVED')
       router.push(`/ResumeDetails/${ID}`)
     } else {
       console.error('Error inserting data:', response.data.message)

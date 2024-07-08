@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import Loader from '../Loader'
+import { AIgenerate } from '../../functions/AiGenerate'
 
 const ProjectDetails = ({ ID }) => {
   const [ProjectDetails, SetDetails] = useState({
@@ -10,6 +12,8 @@ const ProjectDetails = ({ ID }) => {
     Description: '',
   })
   const Router = useRouter()
+  const [getdataloading, setgetloading] = useState(true)
+  const [loading, setloading] = useState(false)
   const ChangeInput = (e) => {
     SetDetails((prev) => ({
       ...prev,
@@ -29,6 +33,7 @@ const ProjectDetails = ({ ID }) => {
       if (error) {
         // console.error('Error updating data:', error.message)
         // alert('NO DATA SAVED')
+        toast.error('FILL IN ALL THE FIELDS')
       } else {
         console.log('Data updated successfully:', data)
         toast.success('Data has been Updated')
@@ -55,16 +60,32 @@ const ProjectDetails = ({ ID }) => {
         console.log(data)
         if (data.length > 0) {
           SetDetails(data[0]) // Assuming data is an array and you want the first item
+          setgetloading(false)
         }
       }
     } catch (err) {
       console.error('Unexpected error:', err)
     }
   }
+  const CallAi = async () => {
+    setloading(true)
+    const data = await AIgenerate(ProjectDetails.Description)
+    SetDetails((prev) => ({ ...prev, Description: data }))
+    toast.success('Description Generated From AI')
+    setloading(false)
+  }
 
   useEffect(() => {
     getdata()
   }, [ID])
+  if (getdataloading) {
+    return (
+      <>
+        <Loader />
+      </>
+    )
+  }
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-col">
@@ -86,20 +107,37 @@ const ProjectDetails = ({ ID }) => {
           </div>
           <div className="flex flex-col w-full">
             <label className="px-2">Add A Project Description</label>
-            <textarea
-              name="Description"
-              value={ProjectDetails.Description}
-              onChange={ChangeInput}
-              cols={10}
-              rows={3}
-              className=" border-2 border-slate-700 rounded-lg p-2"
-              placeholder="Provide A Description About Your Project"
-            />
+            {loading ? (
+              <Loader />
+            ) : (
+              <textarea
+                name="Description"
+                value={ProjectDetails.Description}
+                onChange={ChangeInput}
+                cols={10}
+                rows={3}
+                className=" border-2 border-slate-700 rounded-lg p-2"
+                placeholder="Provide A Description About Your Project.You can Also generate the description through AI, but you would need to provide it 2-3 line description to work properly"
+              />
+            )}
           </div>
         </div>
 
-        <div onClick={() => CreateData()} className="flex justify-end mt-5">
-          <button className="bg-green-600 text-white rounded-lg p-2">
+        <div className="flex justify-end mt-5 gap-5 p-2">
+          <button
+            onClick={CallAi}
+            className={` transition ${
+              loading ? 'animate-pulse' : ''
+            } bg-blue-500 text-white rounded-lg p-2`}
+          >
+            {loading
+              ? 'GENERATING DESCRIPTION FROM AI'
+              : 'CREATE A DESCRIPTION WITH AI'}
+          </button>
+          <button
+            onClick={CreateData}
+            className="bg-green-600 text-white rounded-lg p-2"
+          >
             Save
           </button>
         </div>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import toast from 'react-hot-toast'
 export const CreateData = async (EducationDetailss, router, ID) => {
   try {
     const response = await axios.post(
@@ -17,7 +18,7 @@ export const CreateData = async (EducationDetailss, router, ID) => {
 
     if (response.status === 201) {
       console.log('Data inserted successfully:', response.data)
-      alert('data in')
+      toast.success('Education Details Saved')
       router.push(`/ResumeDetails/${ID}`)
     } else {
       console.error('Error inserting data:', response.data.message)

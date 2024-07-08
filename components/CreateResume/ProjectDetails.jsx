@@ -2,12 +2,16 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { CreateData } from '../../functions/CreateProject'
+import { AIgenerate } from '../../functions/AiGenerate'
+import Loader from '../Loader'
+import toast from 'react-hot-toast'
 
 const ProjectDetailsForm = ({ ID }) => {
   const [ProjectDetails, setProjectDetails] = useState({
     Name: '',
     Description: '',
   })
+  const [loading, setloading] = useState(false)
   const router = useRouter()
 
   const ChangeInput = (e) => {
@@ -15,6 +19,14 @@ const ProjectDetailsForm = ({ ID }) => {
       ...prev,
       [e.target.name]: e.target.value,
     }))
+  }
+
+  const CallAi = async () => {
+    setloading(true)
+    const data = await AIgenerate(ProjectDetails.Description)
+    setProjectDetails((prev) => ({ ...prev, Description: data }))
+    toast.success('DescriptionGeneratedFromAI')
+    setloading(false)
   }
 
   const onSave = () => {
@@ -43,17 +55,35 @@ const ProjectDetailsForm = ({ ID }) => {
         </div>
         <div className="flex flex-col w-full mt-3">
           <label className="px-2">Description</label>
-          <textarea
-            name="Description"
-            value={ProjectDetails.Description}
-            onChange={ChangeInput}
-            className="p-2 border-2 border-slate-300 rounded-lg"
-            placeholder="Enter Project Description"
-            required
-          />
+          {loading ? (
+            <Loader />
+          ) : (
+            <textarea
+              name="Description"
+              value={ProjectDetails.Description}
+              onChange={ChangeInput}
+              className="p-2 border-2 border-slate-300 rounded-lg"
+              placeholder="Enter Project Description"
+              required
+            />
+          )}
         </div>
-        <div onClick={onSave} className="flex justify-end mt-5">
-          <button className="bg-green-600 text-white rounded-lg p-2">
+
+        <div className="flex justify-end mt-5 gap-5 p-2">
+          <button
+            onClick={CallAi}
+            className={` transition ${
+              loading ? 'animate-pulse' : ''
+            } bg-blue-500 text-white rounded-lg p-2`}
+          >
+            {loading
+              ? 'GENERATING DESCRIPTION FROM AI'
+              : 'CREATE A DESCRIPTION WITH AI'}
+          </button>
+          <button
+            onClick={onSave}
+            className="bg-green-600 text-white rounded-lg p-2"
+          >
             Save
           </button>
         </div>

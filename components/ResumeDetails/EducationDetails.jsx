@@ -1,10 +1,11 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { useCity } from 'react'
 
 import { supabase } from '../../lib/supabaseconfig'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import Loader from '../Loader'
+import { AIgenerate } from '../../functions/AiGenerate'
 
 const EducationDetails = ({ ID }) => {
   const [EducationDetailss, setEducationDetailss] = useState({
@@ -16,6 +17,8 @@ const EducationDetails = ({ ID }) => {
     City: '',
     Description: '',
   })
+  const [getdataloading, setgetloading] = useState(true)
+  const [loading, setloading] = useState(false)
   const router = useRouter()
   const ChangeInput = (e) => {
     setEducationDetailss((prev) => ({
@@ -45,13 +48,13 @@ const EducationDetails = ({ ID }) => {
         // alert('NO DATA SAVED')
       } else {
         console.log('Data inserted successfully:', data)
-        alert('data in')
+
         toast.success('Data has been Updated')
         router.back()
       }
     } catch (err) {
       console.error('Unexpected error:', err)
-      alert('data out')
+      toast.error('ENTER ALL THE DETAILS')
     }
   }
   const getdata = async () => {
@@ -68,6 +71,7 @@ const EducationDetails = ({ ID }) => {
         console.log(data)
         if (data.length > 0) {
           setEducationDetailss(data[0]) // Assuming data is an array and you want the first item
+          setgetloading(false)
         }
       }
     } catch (err) {
@@ -75,9 +79,24 @@ const EducationDetails = ({ ID }) => {
     }
   }
 
+  const CallAi = async () => {
+    setloading(true)
+    const data = await AIgenerate(EducationDetailss.Description)
+    setEducationDetailss((prev) => ({ ...prev, Description: data }))
+    toast.success('Description Generated From AI')
+    setloading(false)
+  }
   useEffect(() => {
     getdata()
   }, [ID])
+  if (getdataloading) {
+    return (
+      <>
+        <Loader />
+      </>
+    )
+  }
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-col">
@@ -162,17 +181,34 @@ const EducationDetails = ({ ID }) => {
         </div>
         <div className="flex flex-col w-full mt-3">
           <label className="px-2">Description</label>
-          <textarea
-            name="Description"
-            value={EducationDetailss.Description}
-            onChange={ChangeInput}
-            className="p-2 border-2 border-slate-300 rounded-lg"
-            placeholder="Enter Job Description"
-            required
-          />
+          {loading ? (
+            <Loader />
+          ) : (
+            <textarea
+              name="Description"
+              value={EducationDetailss.Description}
+              onChange={ChangeInput}
+              className="p-2 border-2 border-slate-300 rounded-lg"
+              placeholder="Enter Education Description. You can Also generate the description through AI, but you would need to provide it 2-3 line description to work properly"
+              required
+            />
+          )}
         </div>
-        <div onClick={() => CreateData()} className="flex justify-end mt-5">
-          <button className="bg-green-600 text-white rounded-lg p-2">
+        <div className="flex justify-end mt-5 gap-5 p-2">
+          <button
+            onClick={CallAi}
+            className={` transition ${
+              loading ? 'animate-pulse' : ''
+            } bg-blue-500 text-white rounded-lg p-2`}
+          >
+            {loading
+              ? 'GENERATING DESCRIPTION FROM AI'
+              : 'UPDATE  DESCRIPTION WITH AI'}
+          </button>
+          <button
+            onClick={CreateData}
+            className="bg-green-600 text-white rounded-lg p-2"
+          >
             Save
           </button>
         </div>
