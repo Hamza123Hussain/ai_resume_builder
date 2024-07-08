@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import Loader from '../Loader'
 import { AIgenerate } from '../../functions/AiGenerate'
+import { MoveLeft } from 'lucide-react'
 
 const ProjectDetails = ({ ID }) => {
   const [ProjectDetails, SetDetails] = useState({
@@ -87,59 +88,68 @@ const ProjectDetails = ({ ID }) => {
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-col">
-        <h1 className="font-bold text-lg">Add Your Skills</h1>
+    <div className=" p-4">
+      <div
+        onClick={() => Router.back()}
+        className=" px-2 mb-4 cursor-pointer flex items-center gap-2 border-2 rounded-lg w-fit hover:bg-black hover:text-white"
+      >
+        <MoveLeft size={50} />
+        <h1 className=" text-lg font-bold">Go Back</h1>
       </div>
-      <div>
-        <div className="flex flex-col gap-5 mt-3">
-          <div className="flex flex-col w-full">
-            <label className="px-2">Project Name</label>
-            <input
-              name="Name"
-              value={ProjectDetails.Name}
-              onChange={ChangeInput}
-              className="p-2 border-2 border-slate-300 rounded-lg"
-              type="text"
-              placeholder="Enter Project Name"
-              required
-            />
-          </div>
-          <div className="flex flex-col w-full">
-            <label className="px-2">Add A Project Description</label>
-            {loading ? (
-              <Loader />
-            ) : (
-              <textarea
-                name="Description"
-                value={ProjectDetails.Description}
-                onChange={ChangeInput}
-                cols={10}
-                rows={3}
-                className=" border-2 border-slate-700 rounded-lg p-2"
-                placeholder="Provide A Description About Your Project.You can Also generate the description through AI, but you would need to provide it 2-3 line description to work properly"
-              />
-            )}
-          </div>
+      <div className="flex flex-col">
+        <div className="flex flex-col">
+          <h1 className="font-bold text-lg">Add Your Skills</h1>
         </div>
+        <div>
+          <div className="flex flex-col gap-5 mt-3">
+            <div className="flex flex-col w-full">
+              <label className="px-2">Project Name</label>
+              <input
+                name="Name"
+                value={ProjectDetails.Name}
+                onChange={ChangeInput}
+                className="p-2 border-2 border-slate-300 rounded-lg"
+                type="text"
+                placeholder="Enter Project Name"
+                required
+              />
+            </div>
+            <div className="flex flex-col w-full">
+              <label className="px-2">Add A Project Description</label>
+              {loading ? (
+                <Loader />
+              ) : (
+                <textarea
+                  name="Description"
+                  value={ProjectDetails.Description}
+                  onChange={ChangeInput}
+                  cols={10}
+                  rows={3}
+                  className=" border-2 border-slate-700 rounded-lg p-2"
+                  placeholder="Provide A Description About Your Project.You can Also generate the description through AI, but you would need to provide it 2-3 line description to work properly"
+                />
+              )}
+            </div>
+          </div>
 
-        <div className="flex justify-end mt-5 gap-5 p-2">
-          <button
-            onClick={CallAi}
-            className={` transition ${
-              loading ? 'animate-pulse' : ''
-            } bg-blue-500 text-white rounded-lg p-2`}
-          >
-            {loading
-              ? 'GENERATING DESCRIPTION FROM AI'
-              : 'CREATE A DESCRIPTION WITH AI'}
-          </button>
-          <button
-            onClick={CreateData}
-            className="bg-green-600 text-white rounded-lg p-2"
-          >
-            Save
-          </button>
+          <div className="flex justify-end mt-5 gap-5 p-2">
+            <button
+              onClick={CallAi}
+              className={` transition ${
+                loading ? 'animate-pulse' : ''
+              } bg-blue-500 text-white rounded-lg p-2`}
+            >
+              {loading
+                ? 'GENERATING DESCRIPTION FROM AI'
+                : 'CREATE A DESCRIPTION WITH AI'}
+            </button>
+            <button
+              onClick={CreateData}
+              className="bg-green-600 text-white rounded-lg p-2"
+            >
+              Save
+            </button>
+          </div>
         </div>
       </div>
     </div>
