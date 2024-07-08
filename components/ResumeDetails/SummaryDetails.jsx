@@ -8,7 +8,7 @@ import { ThemeContext } from '../../lib/Context'
 
 const SummaryDetails = ({ ID }) => {
   const { theme, setTheme } = useContext(ThemeContext)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [profileexist, setprofileexist] = useState(false)
   const [ProfileID, SetID] = useState(null)
 
@@ -18,6 +18,7 @@ const SummaryDetails = ({ ID }) => {
   }
 
   const CreateDetails = async () => {
+    setLoading(true)
     const FeedBackPrompt = `Read the ${theme.Profile} completely and then give a 3-6 line brief profile that the user can add in their resume. Just give back the brief profile for the given text and nothing else`
 
     const Gemni_Response = await chatSessions.sendMessage(FeedBackPrompt)
@@ -36,6 +37,7 @@ const SummaryDetails = ({ ID }) => {
         console.log('Data inserted successfully:', data)
         toast.success('Profile data saved successfully')
         setTheme((prev) => ({ ...prev, Profile: MockJsonResponse }))
+        setLoading(false)
       }
     } catch (err) {
       console.error('Unexpected error:', err)
@@ -45,6 +47,7 @@ const SummaryDetails = ({ ID }) => {
 
   const DeleteDetails = async () => {
     try {
+      setLoading(true)
       const { error } = await supabase.from('Profile').delete().eq('UserID', ID)
 
       if (error) {
@@ -56,6 +59,7 @@ const SummaryDetails = ({ ID }) => {
         setLocalStorageProfile('') // Clear local storage
         toast.success('Profile data deleted successfully')
         setprofileexist(false)
+        setLoading(false)
       }
     } catch (err) {
       console.error('Unexpected error:', err)
@@ -89,6 +93,7 @@ const SummaryDetails = ({ ID }) => {
     }
   }
   const UpdateDetails = async (id) => {
+    setLoading(true)
     const FeedBackPrompt = `Read the ${theme.Profile} completely and then give a 3-6 line brief profile that the user can add in their resume. Just give back the brief profile for the given text and nothing else`
 
     const Gemni_Response = await chatSessions.sendMessage(FeedBackPrompt)
