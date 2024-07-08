@@ -10,7 +10,7 @@ const WorkExperiencePreview = ({ ID, theme }) => {
       const response = await fetch(`/api/Lists/WorkExperience?id=${ID}`)
       const data = await response.json()
       SetData(data)
-      // console.log(data)
+      console.log(data)
     } catch (err) {
       console.error('Unexpected error:', err)
     }
