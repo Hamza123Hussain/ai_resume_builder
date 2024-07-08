@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseconfig'
 import { AtSign, MapPin, Phone } from 'lucide-react'
+import Loader from '../Loader'
 
 const PerosnalDetailsPreview = ({ ID, theme }) => {
+  const [loader, setloading] = useState(true)
   const [PerosnalDetailsPreview, setDetails] = useState({
     FirstName: '',
     LastName: '',
@@ -28,16 +30,24 @@ const PerosnalDetailsPreview = ({ ID, theme }) => {
         // console.log(data)
         if (data.length > 0) {
           setDetails(data[0]) // Assuming data is an array and you want the first item
+          setloading(false)
         }
       }
     } catch (err) {
       console.error('Unexpected error:', err)
     }
   }
-
   useEffect(() => {
     getData()
   }, [PerosnalDetailsPreview])
+
+  if (loader) {
+    return (
+      <>
+        <Loader />
+      </>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-2 p-4  ">
