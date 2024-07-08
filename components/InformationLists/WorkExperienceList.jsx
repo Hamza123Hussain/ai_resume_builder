@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Trash2 } from 'lucide-react'
+import { FilePenLine, Trash2 } from 'lucide-react'
 import Loader from '../Loader'
 import toast from 'react-hot-toast'
 
@@ -58,30 +58,31 @@ const WorkExperienceList = ({ ID }) => {
           key={index}
         >
           <div className="flex justify-between">
-            <div
-              className="flex font-bold"
-              onClick={() => router.push(`/WorkExperience/${element.id}`)}
-            >
+            <div className="flex font-bold">
               <h1 className="capitalize">{element.Jobtitle}</h1>,
               <h1 className="capitalize">{element.Company}</h1>
             </div>
-            <Trash2 onClick={() => DeleteData(element.id)} />
           </div>
           <div className="flex md:flex-row flex-col justify-between">
-            <div
-              className="flex gap-2"
-              onClick={() => router.push(`/WorkExperience/${element.id}`)}
-            >
+            <div className="flex gap-2">
               <h1 className="capitalize opacity-75">{element.StartDate}</h1>-
               <h1 className="capitalize opacity-75">{element.EndDate}</h1>
             </div>
-            <div
-              className="flex gap-2 opacity-85"
-              onClick={() => router.push(`/WorkExperience/${element.id}`)}
-            >
+            <div className="flex gap-2 opacity-85">
               <h1 className="capitalize">{element.City}</h1>,
               <h1 className="capitalize">{element.Country}</h1>
             </div>
+          </div>
+          <div className=" flex justify-end mt-2 gap-5">
+            {' '}
+            <FilePenLine
+              className=" text-blue-500"
+              onClick={() => router.push(`/WorkExperience/${element.id}`)}
+            />
+            <Trash2
+              className=" text-red-600"
+              onClick={() => DeleteData(element.id)}
+            />
           </div>
         </div>
       ))}
@@ -90,7 +91,7 @@ const WorkExperienceList = ({ ID }) => {
         onClick={() => {
           router.push(`/CreateResumeData/${ID}/WorkExperience`)
         }}
-        className="text-black rounded-lg p-3 border-2 border-slate-400"
+        className="text-black rounded-lg p-3 border-2 border-slate-400 hover:text-white hover:bg-green-500"
       >
         ADD More Work Experience
       </button>

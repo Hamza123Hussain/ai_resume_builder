@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Trash2 } from 'lucide-react'
+import { FilePenLine, Trash2 } from 'lucide-react'
 import Loader from '../Loader'
 import toast from 'react-hot-toast'
 
@@ -51,21 +51,28 @@ const SkillList = ({ ID }) => {
     <div className="flex flex-col gap-5 mt-5">
       {SkillData.map((element, index) => (
         <div
-          className="p-3 bg-slate-200 rounded-lg flex flex-col cursor-pointer"
+          className="px-2 py-1 bg-slate-200 rounded-lg flex flex-col cursor-pointer"
           key={index}
         >
           <div className="flex justify-between items-center">
-            <div
-              className="flex font-bold  flex-col"
-              onClick={() => router.push(`/Skills/${element.id}`)}
-            >
+            <div className="flex font-bold  flex-col">
               <h1 className="capitalize">{element.Name}</h1>
               <div className=" p-2 text-sm">
                 <h3 className=" text-gray-500">Skill Level</h3>
                 <h1 className="capitalize">{element.Skill_Level}</h1>
               </div>
             </div>
-            <Trash2 onClick={() => DeleteData(element.id)} />
+          </div>
+          <div className=" flex justify-end mt-2 gap-5">
+            {' '}
+            <FilePenLine
+              className=" text-blue-500"
+              onClick={() => router.push(`/Skills/${element.id}`)}
+            />
+            <Trash2
+              className=" text-red-600"
+              onClick={() => DeleteData(element.id)}
+            />
           </div>
         </div>
       ))}
@@ -74,7 +81,7 @@ const SkillList = ({ ID }) => {
         onClick={() => {
           router.push(`/CreateResumeData/${ID}/Skills`)
         }}
-        className="text-black rounded-lg p-3 border-2 border-slate-400"
+        className="text-black rounded-lg p-3 border-2 hover:text-white border-slate-400 hover:bg-green-500"
       >
         ADD More Skills
       </button>

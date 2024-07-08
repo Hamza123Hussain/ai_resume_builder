@@ -30,6 +30,7 @@ const SkillDetails = ({ ID }) => {
       if (error) {
         // console.error('Error inserting data:', error.message)
         // alert('NO DATA SAVED')
+        toast.error('FILL ALL THE FIELDS')
       } else {
         console.log('Data inserted successfully:', data)
         toast.success('Data has been Updated')

@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Trash2 } from 'lucide-react'
+import { FilePenLine, Trash2 } from 'lucide-react'
 import Loader from '../Loader'
 import toast from 'react-hot-toast'
 
@@ -52,10 +52,7 @@ const ProjectList = ({ ID }) => {
           key={index}
         >
           <div className="flex justify-between items-center">
-            <div
-              className="flex flex-col"
-              onClick={() => router.push(`/Project/${element.id}`)}
-            >
+            <div className="flex flex-col">
               <h1 className="capitalize">{element.Name}</h1>
               <div className="px-2">
                 <h3 className="text-sm text-gray-500">Description</h3>
@@ -65,7 +62,17 @@ const ProjectList = ({ ID }) => {
                 </p>
               </div>
             </div>
-            <Trash2 onClick={() => deleteData(element.id)} />
+          </div>
+          <div className=" flex justify-end mt-2 gap-5">
+            {' '}
+            <FilePenLine
+              className=" text-blue-500"
+              onClick={() => router.push(`/Project/${element.id}`)}
+            />
+            <Trash2
+              className=" text-red-600"
+              onClick={() => DeleteData(element.id)}
+            />
           </div>
         </div>
       ))}
@@ -74,7 +81,7 @@ const ProjectList = ({ ID }) => {
         onClick={() => {
           router.push(`/CreateResumeData/${ID}/Project`)
         }}
-        className="text-black rounded-lg p-3 border-2 border-slate-400"
+        className="text-black rounded-lg p-3 border-2 hover:text-white border-slate-400 hover:bg-green-500"
       >
         Add More Projects
       </button>

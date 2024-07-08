@@ -59,18 +59,26 @@ const PerosnalDetailsPreview = ({ ID, theme }) => {
           {PerosnalDetailsPreview.Jobtitle}
         </h1>
         <h1 className="capitalize flex gap-1 items-center justify-center">
-          <MapPin size={12} />
-          {PerosnalDetailsPreview.City}, {PerosnalDetailsPreview.Country}
+          {PerosnalDetailsPreview.City !== '' ? <MapPin size={12} /> : ''}
+          {PerosnalDetailsPreview.City}{' '}
+          {PerosnalDetailsPreview.City !== '' ? ',' : ''}{' '}
+          {PerosnalDetailsPreview.Country}
         </h1>
       </div>
       <div
         className={`text-xs flex flex-col sm:flex-row justify-between items-center p-2 border-b-2 ${theme.Border} `}
       >
         <h1 className="flex gap-1 items-center">
-          <AtSign size={12} /> {PerosnalDetailsPreview.EmailAddress}
+          {PerosnalDetailsPreview.EmailAddress !== '' ? (
+            <AtSign size={12} />
+          ) : (
+            ''
+          )}{' '}
+          {PerosnalDetailsPreview.EmailAddress}
         </h1>
         <h1 className="flex gap-1 items-center mt-2 sm:mt-0">
-          <Phone size={12} /> {PerosnalDetailsPreview.PhoneNumber}
+          {PerosnalDetailsPreview.PhoneNumber !== '' ? <Phone size={12} /> : ''}{' '}
+          {PerosnalDetailsPreview.PhoneNumber}
         </h1>
       </div>
     </div>

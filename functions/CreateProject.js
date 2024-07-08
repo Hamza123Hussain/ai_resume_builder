@@ -19,7 +19,7 @@ export const CreateData = async (ProjectDetails, router, ID) => {
       router.back()
     } else {
       console.error('Error inserting data:', response.data.message)
-      alert('NO DATA SAVED')
+      toast.error('FILL ALL THE FIELDS')
     }
   } catch (err) {
     console.error('Unexpected error:', err)
