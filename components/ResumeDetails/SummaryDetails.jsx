@@ -52,9 +52,10 @@ const SummaryDetails = ({ ID }) => {
         toast.error('Failed to delete profile data')
       } else {
         console.log('Data deleted successfully')
-        setTheme((prev) => ({ ...prev, Profile: null })) // Clear profile state after deletion
+        setTheme((prev) => ({ ...prev, Profile: '' })) // Clear profile state after deletion
         setLocalStorageProfile('') // Clear local storage
         toast.success('Profile data deleted successfully')
+        setprofileexist(false)
       }
     } catch (err) {
       console.error('Unexpected error:', err)
