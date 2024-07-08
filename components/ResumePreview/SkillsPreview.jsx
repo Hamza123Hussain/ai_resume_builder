@@ -24,20 +24,38 @@ const SkillsPreview = ({ ID }) => {
   return SkillData.length > 0 ? (
     <div className=" p-4 ">
       <h1 className=" font-bold text-xl">Skills</h1>
-      {SkillData.map((element, index) => {
-        return (
-          <div
-            className="py-3  rounded-lg flex justify-between cursor-pointer p-2  "
-            key={index}
-          >
-            <h1 className=" capitalize font-extrabold">{element.Name} </h1>
-            <h1 className=" capitalize">
-              {' '}
-              Skill Level : {element.Skill_Level}
-            </h1>
-          </div>
-        )
-      })}
+      <div className=" flex flex-col ">
+        {SkillData.map((element, index) => {
+          return (
+            <div
+              className=" rounded-lg flex justify-between cursor-pointer items-center p-2 gap-3  "
+              key={index}
+            >
+              <h1 className=" py-3  capitalize font-extrabold">
+                {element.Name}{' '}
+              </h1>
+              <div className=" h-[22px] w-60 bg-white border-2">
+                <h1
+                  className={`text-transparent  bg-green-500 ${
+                    element.Skill_Level == 'Amateur' ? ' w-[20%] h-[20px]' : ''
+                  }
+              
+              ${element.Skill_Level == 'Proficient' ? 'w-[60%] h-[20px]' : ''}
+               
+              ${element.Skill_Level == 'Competent' ? 'w-[40%] h-[20px] ' : ''}
+               ${element.Skill_Level == 'Beginner' ? 'w-[10%] h-[20px] ' : ''}
+                ${element.Skill_Level == 'Expert' ? 'w-[100%] h-[20px] ' : ''}
+
+              
+              `}
+                >
+                  Skill Level : {element.Skill_Level}
+                </h1>
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   ) : (
     <></>
