@@ -19,7 +19,6 @@ const ProfileDetailsPreview = ({ ID }) => {
         setTheme((prev) => ({ ...prev, Profile: data[0]?.Description }))
 
         console.log(theme.Profile)
-        setLoading(false)
       }
     } catch (err) {
       console.error('Unexpected error:', err)

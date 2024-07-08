@@ -9,6 +9,8 @@ import { ThemeContext } from '../../lib/Context'
 const SummaryDetails = ({ ID }) => {
   const { theme, setTheme } = useContext(ThemeContext)
   const [loading, setLoading] = useState(false)
+  const [profileexist, setprofileexist] = useState(false)
+  const [ProfileID, SetID] = useState(null)
 
   // Function to set theme.Profile in local storage
   const setLocalStorageProfile = (profileValue) => {
@@ -16,7 +18,7 @@ const SummaryDetails = ({ ID }) => {
   }
 
   const CreateDetails = async () => {
-    const FeedBackPrompt = `Read the ${theme.profile} completely and then give a 3-6 line brief profile that the user can add in their resume. Just give back the brief profile for the given text and nothing else`
+    const FeedBackPrompt = `Read the ${theme.Profile} completely and then give a 3-6 line brief profile that the user can add in their resume. Just give back the brief profile for the given text and nothing else`
 
     const Gemni_Response = await chatSessions.sendMessage(FeedBackPrompt)
     const MockJsonResponse = Gemni_Response.response.text()
@@ -68,7 +70,10 @@ const SummaryDetails = ({ ID }) => {
         .eq('UserID', ID)
 
       if (data) {
+        console.log(data)
         setTheme((prev) => ({ ...prev, Profile: data[0]?.Description }))
+        setprofileexist(true)
+        SetID(data[0]?.id)
         setLoading(false)
         return null // Handle error state as per your application's needs
       } else {
@@ -80,6 +85,35 @@ const SummaryDetails = ({ ID }) => {
     } catch (err) {
       console.error('Unexpected error:', err)
       return null // Handle unexpected error state
+    }
+  }
+  const UpdateDetails = async (id) => {
+    const FeedBackPrompt = `Read the ${theme.Profile} completely and then give a 3-6 line brief profile that the user can add in their resume. Just give back the brief profile for the given text and nothing else`
+
+    const Gemni_Response = await chatSessions.sendMessage(FeedBackPrompt)
+    const MockJsonResponse = Gemni_Response.response.text()
+
+    try {
+      const { data, error } = await supabase
+        .from('Profile')
+        .update({
+          Description: MockJsonResponse,
+        })
+        .eq('id', id)
+
+      if (error) {
+        console.error('Error updating data:', error.message)
+        toast.error('Failed to update profile data')
+      } else {
+        console.log('Data updated successfully:', data)
+        toast.success('Profile data updated successfully')
+        setTheme((prev) => ({ ...prev, Profile: MockJsonResponse }))
+        setLoading(false)
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      toast.error('Unexpected error occurred')
+      setLoading(false)
     }
   }
 
@@ -108,12 +142,21 @@ const SummaryDetails = ({ ID }) => {
       </div>
       <div className="flex justify-end">
         <div className="flex justify-between gap-3">
-          <button
-            onClick={() => CreateDetails()}
-            className="p-2 mt-5 bg-blue-500 rounded-lg text-white"
-          >
-            Create
-          </button>
+          {!profileexist ? (
+            <button
+              onClick={() => CreateDetails()}
+              className="p-2 mt-5 bg-green-500 rounded-lg text-white"
+            >
+              Create
+            </button>
+          ) : (
+            <button
+              onClick={() => UpdateDetails(ProfileID)}
+              className="p-2 mt-5 bg-blue-500 rounded-lg text-white"
+            >
+              Update
+            </button>
+          )}
           <button
             onClick={() => DeleteDetails()}
             className="p-2 mt-5 bg-red-500 rounded-lg text-white"
