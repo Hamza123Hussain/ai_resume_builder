@@ -15,9 +15,7 @@ export default function Home() {
           Build Your Perfect Resume
         </Link>
       </section>
-      <p className="text-lg text-gray-600">
-        Create a professional resume effortlessly with the help of AI.
-      </p>
+
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
           {/* <img
