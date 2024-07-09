@@ -81,7 +81,7 @@ const ProjectDetailsForm = ({ ID }) => {
           <div className="flex justify-end mt-5 gap-5 p-2">
             <button
               onClick={CallAi}
-              className={` transition ${
+              className={` text-sm sm:text-lg transition ${
                 loading ? 'animate-pulse' : ''
               } bg-blue-500 text-white rounded-lg p-2`}
             >

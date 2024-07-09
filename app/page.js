@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 export default function Home() {
@@ -7,17 +8,16 @@ export default function Home() {
   return (
     <main className="p-6 sm:p-10 md:p-16 lg:p-24 bg-gray-100">
       <section className="text-center mb-10">
-        <button
-          onClick={() => Router.push('/DashBoard')}
+        <Link
+          href={'./sign-in'}
           className=" text-lg sm:text-4xl font-bold text-gray-500 mb-4 border-2 hover:bg-green-500 hover:text-white border-green-500  rounded-lg p-5"
         >
           Build Your Perfect Resume
-        </button>
-        <p className="text-lg text-gray-600">
-          Create a professional resume effortlessly with the help of AI.
-        </p>
+        </Link>
       </section>
-
+      <p className="text-lg text-gray-600">
+        Create a professional resume effortlessly with the help of AI.
+      </p>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
           {/* <img

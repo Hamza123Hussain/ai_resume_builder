@@ -142,7 +142,7 @@ const CreateWorkExperience = ({ ID }) => {
           <div className="flex justify-end mt-5 gap-5 p-2">
             <button
               onClick={CallAi}
-              className={` transition ${
+              className={` transition text-sm sm:text-lg ${
                 loading ? 'animate-pulse' : ''
               } bg-blue-500 text-white rounded-lg p-2`}
             >

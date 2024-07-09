@@ -11,6 +11,7 @@ import {
 import { supabase } from '../lib/supabaseconfig'
 import { useUser } from '@clerk/nextjs'
 import ResumeCard from './ResumeCard'
+import toast from 'react-hot-toast'
 const Add_Resume = () => {
   const [dialogopen, setdialog] = useState(false)
   const [loading, setloader] = useState(false)
@@ -36,7 +37,7 @@ const Add_Resume = () => {
         alert('NO DATA SAVED')
       } else {
         console.log('Data inserted successfully:', data)
-        alert('RESUME HAS BEEN CREATED')
+        toast.success('RESUME HAS BEEN CREATED')
         setdialog(false)
         setloader(false)
       }

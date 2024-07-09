@@ -19,13 +19,13 @@ const Header = () => {
           className=" w-8 sm:w-20  "
           src={Logo}
           alt="Logo"
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/DashBoard')}
         />
       </div>
       <div className=" ">
         <div
           className="   flex justify-center items-center gap-4 font-bold cursor-pointer"
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/DashBoard')}
         >
           <p className=" text-sm  sm:text-4xl">IntelliResume</p>
         </div>

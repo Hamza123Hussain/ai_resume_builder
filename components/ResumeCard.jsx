@@ -5,13 +5,18 @@ import Background from '../public/background.jpg'
 import Image from 'next/image'
 
 import { useRouter } from 'next/navigation'
+import { useUser } from '@clerk/nextjs'
 const ResumeCard = () => {
   const Router = useRouter()
   const [Userdata, SetData] = useState([])
   const [loading, setloading] = useState(true)
+  const { user } = useUser()
   const getdata = async () => {
     try {
-      const { data, error } = await supabase.from('UserData').select('*')
+      const { data, error } = await supabase
+        .from('UserData')
+        .select('*')
+        .eq('CreatedBy', user?.primaryEmailAddress?.emailAddress)
 
       if (error) {
         console.error('Error inserting data:', error.message)

@@ -36,7 +36,7 @@ const SkillsPreview = ({ ID }) => {
               </h1>
               <div className=" h-[22px] w-60 bg-white border-2">
                 <h1
-                  className={`text-transparent  bg-green-500 ${
+                  className={`text-transparent  bg-green-500 border-2 border-green-800 ${
                     element.Skill_Level == 'Amateur' ? ' w-[20%] h-[20px]' : ''
                   }
               
