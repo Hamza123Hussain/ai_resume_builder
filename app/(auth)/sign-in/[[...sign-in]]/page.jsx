@@ -1,9 +1,14 @@
+// pages/sign-in.tsx
+'use client'
 import { SignIn } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
 
-export default function Page() {
-  return (
-    <div className=" p-3">
-      <SignIn path="/sign-in" />
-    </div>
-  )
+export default function SignInPage() {
+  const router = useRouter()
+
+  const handleSignInSuccess = () => {
+    router.push('/DashBoard')
+  }
+
+  return <SignIn path="/sign-in" afterSignIn={handleSignInSuccess} />
 }
